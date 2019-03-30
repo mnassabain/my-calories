@@ -8,8 +8,15 @@
     </div>
 
     <div class="pie-chart">
-      <apexchart width="230" type="pie" :options="options" :series="series">
+      <apexchart width="230" type="pie" :options="options" :series="series"
+        id="chart">
       </apexchart>
+    </div>
+
+    <div class="macros">
+      <span>240g/320g</span>
+      <span>80g/120g</span>
+      <span>30g/55g</span>
     </div>
 
   </div>
@@ -32,7 +39,7 @@ export default {
         },
         legend: {
           show: false
-        }
+        },
       },
       series: [800, 300, 700],
       labels: ["Carbohydrates", "Protein", "Fat"]
@@ -55,7 +62,6 @@ export default {
   box-sizing: border-box;
 
   display: grid;
-  grid-row-gap: 10px;
   grid-template: 
     'overall-calories overall-calories'
     'pie-chart macros'
@@ -98,6 +104,28 @@ hr
   grid-area: pie-chart;
   margin: 0;
   padding: 0;
+}
+
+.chart
+{
+  margin: 0;
+  padding: 0;
+}
+
+.macros
+{
+  grid-area: macros;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20px;
+  align-self: center;
+  margin-bottom: 70px;
+}
+
+.macros span
+{
+  line-height: 1.5em;
 }
 
 </style>
