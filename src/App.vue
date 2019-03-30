@@ -61,7 +61,8 @@
       </div>
     </div>
 
-    <button id="add-meal">+</button>
+    <button id="create-meal"><font-awesome-icon icon="hamburger"/></button>
+    <button id="add-meal"><font-awesome-icon icon="plus"/></button>
 
   </div>
 </template>
@@ -219,7 +220,7 @@ export default {
   padding: 0;
 }
 
-button#add-meal
+button
 {
   border: none;
   background-color: #58ACFA;
@@ -229,10 +230,22 @@ button#add-meal
   color: white;
   font-weight: bold;
   font-size: 2em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+button#add-meal
+{
   position: fixed;
   bottom: 30px;
   right: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button#create-meal
+{
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
 }
 
 
