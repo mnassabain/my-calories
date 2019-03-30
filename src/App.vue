@@ -7,18 +7,39 @@
       <h3>2500 kcal</h3>
     </div>
 
+    <div class="pie-chart">
+      <apexchart width="230" type="pie" :options="options" :series="series">
+      </apexchart>
+    </div>
+
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
+import VueApexCharts from 'vue-apexcharts'
 
 export default {
   name: 'app',
   components: {
-    
+    'apexchart': VueApexCharts
+  },
+  data: function() {
+    return {
+      options: {
+        dataLabels: {
+          enabled: false
+        },
+        legend: {
+          show: false
+        }
+      },
+      series: [800, 300, 700],
+      labels: ["Carbohydrates", "Protein", "Fat"]
+    }
   }
 }
+
 </script>
 
 <style>
@@ -30,10 +51,11 @@ export default {
 
   margin: 0;
   padding: 0;
-  
+
   box-sizing: border-box;
 
   display: grid;
+  grid-row-gap: 10px;
   grid-template: 
     'overall-calories overall-calories'
     'pie-chart macros'
@@ -70,4 +92,12 @@ hr
   margin: 0;
   padding: 0;
 }
+
+.pie-chart
+{
+  grid-area: pie-chart;
+  margin: 0;
+  padding: 0;
+}
+
 </style>
