@@ -6,9 +6,9 @@
     </div>
 
     <div class="overall-calories">
-      <h2>1800 kcal</h2>
+      <h2>{{currentCalories}} kcal</h2>
       <hr>
-      <h3>2500 kcal</h3>
+      <h3>{{goalCalories}} kcal</h3>
     </div>
 
     <div class="pie-chart">
@@ -21,17 +21,17 @@
     <div class="macros">
       <div class="macro">
         <font-awesome-icon icon="bread-slice"/>
-        <span>240g/320g</span>
+        <span>{{currentCarbs}}g/{{goalCarbs}}g</span>
       </div>
 
       <div class="macro">
         <font-awesome-icon icon="drumstick-bite"/>
-        <span>80g/120g</span>
+        <span>{{currentProtein}}g/{{goalProtein}}g</span>
       </div>
       
       <div class="macro">
         <font-awesome-icon icon="fish"/>
-        <span>30g/55g</span>
+        <span>{{currentFats}}g/{{goalFats}}g</span>
       </div>
     </div>
 
@@ -62,7 +62,7 @@
     </div>
 
     <button id="create-meal"><font-awesome-icon icon="hamburger"/></button>
-    <button id="add-meal"><font-awesome-icon icon="plus"/></button>
+    <button id="add-meal" v-on:click="update()"><font-awesome-icon icon="plus"/></button>
 
   </div>
 </template>
@@ -78,6 +78,7 @@ export default {
   },
   data: function() {
     return {
+      /* pie chart */
       options: {
         dataLabels: {
           enabled: false
@@ -93,7 +94,25 @@ export default {
       },
       series: [800, 300, 700],
       labels: ["Carbohydrates", "Protein", "Fat"],
-      
+
+      /* other */
+      currentCalories: 1750,
+      goalCalories: 2500,
+
+      currentCarbs: 270,
+      goalCarbs: 350,
+
+      currentProtein: 80,
+      goalProtein: 120,
+
+      currentFats: 30,
+      goalFats: 55,
+    }
+  },
+  methods: {
+    update() {
+      this.currentCalories = this.currentCarbs*4 + this.currentProtein*4 
+        + this.currentFats*9;
     }
   }
 }
