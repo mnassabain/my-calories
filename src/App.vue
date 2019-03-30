@@ -8,7 +8,7 @@
     </div>
 
     <div class="pie-chart">
-      <apexchart width="230" type="pie" :options="options" :series="series"
+      <apexchart width="200" type="pie" :options="options" :series="series"
         id="chart">
       </apexchart>
     </div>
@@ -17,6 +17,24 @@
       <span>240g/320g</span>
       <span>80g/120g</span>
       <span>30g/55g</span>
+    </div>
+
+
+    <div class="meals">
+      <h3>Todays meals</h3>
+      <hr>
+      <div class="meal">
+        <h4>Tost</h4>
+        <span>30g/20g/18g//354kcal</span>
+      </div>
+      <div class="meal">
+        <h4>Tost</h4>
+        <span>30g/20g/18g//354kcal</span>
+      </div>
+      <div class="meal">
+        <h4>Tost</h4>
+        <span>30g/20g/18g//354kcal</span>
+      </div>
     </div>
 
   </div>
@@ -40,9 +58,15 @@ export default {
         legend: {
           show: false
         },
+        grid:
+        {
+          padding: {top: 0, bottom: 0, right: 0, left: 0},
+          margin: {top: 0, bottom: 0, right: 0, left: 0},
+        }
       },
       series: [800, 300, 700],
-      labels: ["Carbohydrates", "Protein", "Fat"]
+      labels: ["Carbohydrates", "Protein", "Fat"],
+      
     }
   }
 }
@@ -79,21 +103,21 @@ export default {
   margin-top: 10px;
 }
 
-h2
+.overall-calories h2
 {
   margin: 5px 0;
   padding: 0;
 }
 
 
-h3
+.overall-calories h3
 {
   opacity: 0.8;
   margin: 5px 0;
   padding: 0;
 }
 
-hr
+.overall-calories hr
 {
   margin: 0;
   padding: 0;
@@ -120,12 +144,39 @@ hr
   align-items: flex-end;
   margin-right: 20px;
   align-self: center;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .macros span
 {
   line-height: 1.5em;
 }
+
+.meals
+{
+  grid-area: meals;
+  width: 90%;
+  justify-self: center;
+}
+
+.meals h3
+{
+  margin: 5px 0;
+  padding: 0;
+}
+
+.meal
+{
+  background-color: #d6ffe6;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+.meal h4
+{
+  margin: 0;
+  padding: 0;
+}
+
 
 </style>
