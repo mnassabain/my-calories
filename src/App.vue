@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    
+
+    <div class="date">
+      <h3>March 30, 2019</h3>
+    </div>
+
     <div class="overall-calories">
       <h2>1800 kcal</h2>
       <hr>
@@ -13,6 +17,7 @@
       </apexchart>
     </div>
 
+    
     <div class="macros">
       <span>240g/320g</span>
       <span>80g/120g</span>
@@ -87,7 +92,7 @@ export default {
 
   display: grid;
   grid-template: 
-    'overall-calories overall-calories'
+    'date overall-calories'
     'pie-chart macros'
     'meals meals';
 }
@@ -96,7 +101,6 @@ export default {
 {
   grid-area: overall-calories;
   margin: 0;
-  width: 33%;
   justify-self: end;
   text-align: right;
   margin-right: 20px;
@@ -128,6 +132,7 @@ export default {
   grid-area: pie-chart;
   margin: 0;
   padding: 0;
+  margin-top: -30px;
 }
 
 .chart
@@ -178,5 +183,10 @@ export default {
   padding: 0;
 }
 
+.date
+{
+  grid-area: date;
+  margin-left: 10px;
+}
 
 </style>
