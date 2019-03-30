@@ -19,9 +19,20 @@
 
     
     <div class="macros">
-      <span>240g/320g</span>
-      <span>80g/120g</span>
-      <span>30g/55g</span>
+      <div class="macro">
+        <font-awesome-icon icon="bread-slice"/>
+        <span>240g/320g</span>
+      </div>
+
+      <div class="macro">
+        <font-awesome-icon icon="drumstick-bite"/>
+        <span>80g/120g</span>
+      </div>
+      
+      <div class="macro">
+        <font-awesome-icon icon="fish"/>
+        <span>30g/55g</span>
+      </div>
     </div>
 
 
@@ -30,17 +41,27 @@
       <hr>
       <div class="meal">
         <h4>Tost</h4>
-        <span>30g/20g/18g//354kcal</span>
+        <span>30g-20g-18g <strong>354kcal</strong></span>
       </div>
       <div class="meal">
         <h4>Tost</h4>
-        <span>30g/20g/18g//354kcal</span>
+        <span>30g-20g-18g <strong>354kcal</strong></span>
       </div>
       <div class="meal">
         <h4>Tost</h4>
-        <span>30g/20g/18g//354kcal</span>
+        <span>30g-20g-18g <strong>354kcal</strong></span>
+      </div>
+      <div class="meal">
+        <h4>Tost</h4>
+        <span>30g-20g-18g <strong>354kcal</strong></span>
+      </div>
+      <div class="meal">
+        <h4>Tost</h4>
+        <span>30g-20g-18g <strong>354kcal</strong></span>
       </div>
     </div>
+
+    <button id="add-meal">+</button>
 
   </div>
 </template>
@@ -86,15 +107,15 @@ export default {
   color: #2c3e50;
 
   margin: 0;
-  padding: 0;
+  padding: 5px 20px;
 
   box-sizing: border-box;
 
   display: grid;
   grid-template: 
-    'date overall-calories'
-    'pie-chart macros'
-    'meals meals';
+    'date overall-calories overall-calories'
+    'pie-chart macros macros'
+    'meals meals meals';
 }
 
 .overall-calories
@@ -103,7 +124,6 @@ export default {
   margin: 0;
   justify-self: end;
   text-align: right;
-  margin-right: 20px;
   margin-top: 10px;
 }
 
@@ -133,6 +153,7 @@ export default {
   margin: 0;
   padding: 0;
   margin-top: -30px;
+  margin-left: -20px;
 }
 
 .chart
@@ -147,20 +168,28 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-right: 20px;
   align-self: center;
   margin-bottom: 50px;
 }
 
-.macros span
+.macro span
 {
   line-height: 1.5em;
+}
+
+.macro
+{
+  display: flex;
+  width: 90%;
+  height: 1.7em;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .meals
 {
   grid-area: meals;
-  width: 90%;
+  width: 100%;
   justify-self: center;
 }
 
@@ -186,7 +215,25 @@ export default {
 .date
 {
   grid-area: date;
-  margin-left: 10px;
+  margin: 0;
+  padding: 0;
 }
+
+button#add-meal
+{
+  border: none;
+  background-color: #58ACFA;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 </style>
