@@ -1,68 +1,77 @@
 <template>
   <div id="app">
 
-    <div class="date">
-      <h3>March 30, 2019</h3>
+    <div class="header">
+      <font-awesome-icon id="bars" icon="bars"></font-awesome-icon>
+      <h1>MyCalories</h1>
     </div>
 
-    <div class="overall-calories">
-      <h2>{{currentCalories}} kcal</h2>
-      <hr>
-      <h3>{{goalCalories}} kcal</h3>
-    </div>
+    <div class="main-container">
 
-    <div class="pie-chart">
-      <apexchart width="200" type="pie" :options="options" :series="series"
-        id="chart">
-      </apexchart>
-    </div>
-
-    
-    <div class="macros">
-      <div class="macro">
-        <font-awesome-icon icon="bread-slice"/>
-        <span>{{currentCarbs}}g/{{goalCarbs}}g</span>
+      <div class="date">
+        <h3>March 30, 2019</h3>
       </div>
 
-      <div class="macro">
-        <font-awesome-icon icon="drumstick-bite"/>
-        <span>{{currentProtein}}g/{{goalProtein}}g</span>
+      <div class="overall-calories">
+        <h2>{{currentCalories}} kcal</h2>
+        <hr>
+        <h3>{{goalCalories}} kcal</h3>
       </div>
+
+      <div class="pie-chart">
+        <apexchart width="200" type="pie" :options="options" :series="series"
+          id="chart">
+        </apexchart>
+      </div>
+
       
-      <div class="macro">
-        <font-awesome-icon icon="fish"/>
-        <span>{{currentFats}}g/{{goalFats}}g</span>
+      <div class="macros">
+        <div class="macro">
+          <font-awesome-icon icon="bread-slice"/>
+          <span>{{currentCarbs}}g/{{goalCarbs}}g</span>
+        </div>
+
+        <div class="macro">
+          <font-awesome-icon icon="drumstick-bite"/>
+          <span>{{currentProtein}}g/{{goalProtein}}g</span>
+        </div>
+        
+        <div class="macro">
+          <font-awesome-icon icon="fish"/>
+          <span>{{currentFats}}g/{{goalFats}}g</span>
+        </div>
       </div>
+
+
+      <div class="meals">
+        <h3>Todays meals</h3>
+        <hr>
+        <div class="meal">
+          <h4>Tost</h4>
+          <span>30g-20g-18g <strong>354kcal</strong></span>
+        </div>
+        <div class="meal">
+          <h4>Tost</h4>
+          <span>30g-20g-18g <strong>354kcal</strong></span>
+        </div>
+        <div class="meal">
+          <h4>Tost</h4>
+          <span>30g-20g-18g <strong>354kcal</strong></span>
+        </div>
+        <div class="meal">
+          <h4>Tost</h4>
+          <span>30g-20g-18g <strong>354kcal</strong></span>
+        </div>
+        <div class="meal">
+          <h4>Tost</h4>
+          <span>30g-20g-18g <strong>354kcal</strong></span>
+        </div>
+      </div>
+
+      <button id="create-meal"><font-awesome-icon icon="hamburger"/></button>
+      <button id="add-meal" v-on:click="update()"><font-awesome-icon icon="plus"/></button>
+
     </div>
-
-
-    <div class="meals">
-      <h3>Todays meals</h3>
-      <hr>
-      <div class="meal">
-        <h4>Tost</h4>
-        <span>30g-20g-18g <strong>354kcal</strong></span>
-      </div>
-      <div class="meal">
-        <h4>Tost</h4>
-        <span>30g-20g-18g <strong>354kcal</strong></span>
-      </div>
-      <div class="meal">
-        <h4>Tost</h4>
-        <span>30g-20g-18g <strong>354kcal</strong></span>
-      </div>
-      <div class="meal">
-        <h4>Tost</h4>
-        <span>30g-20g-18g <strong>354kcal</strong></span>
-      </div>
-      <div class="meal">
-        <h4>Tost</h4>
-        <span>30g-20g-18g <strong>354kcal</strong></span>
-      </div>
-    </div>
-
-    <button id="create-meal"><font-awesome-icon icon="hamburger"/></button>
-    <button id="add-meal" v-on:click="update()"><font-awesome-icon icon="plus"/></button>
 
   </div>
 </template>
@@ -120,6 +129,13 @@ export default {
 </script>
 
 <style>
+
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -127,15 +143,9 @@ export default {
   color: #2c3e50;
 
   margin: 0;
-  padding: 5px 20px;
+  padding: 0;
 
   box-sizing: border-box;
-
-  display: grid;
-  grid-template: 
-    'date overall-calories overall-calories'
-    'pie-chart macros macros'
-    'meals meals meals';
 }
 
 .overall-calories
@@ -235,7 +245,7 @@ export default {
 .date
 {
   grid-area: date;
-  margin: 0;
+  margin: 15px 0;
   padding: 0;
 }
 
@@ -265,6 +275,55 @@ button#create-meal
   position: fixed;
   bottom: 100px;
   right: 30px;
+}
+
+.header
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 20px 20px;
+  grid-area: header;
+  background-image: linear-gradient(to top right, #134E5E, #71B280);
+
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.header h1
+{
+  color: white;
+  font-size: 1.5em;
+  
+  order: 2;
+}
+
+.header #bars
+{
+  color: white;
+  font-size: 1.7em;
+  order: 1;
+}
+
+.main-container
+{
+  margin: 0;
+  padding: 0px 20px;
+  margin-top: 90px;
+  z-index: -1;
+
+  display: grid;
+  grid-template:
+    'header header header'
+    'date overall-calories overall-calories'
+    'pie-chart macros macros'
+    'meals meals meals';
 }
 
 
