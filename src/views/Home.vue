@@ -43,7 +43,7 @@
             <h3>Todays meals</h3>
             <hr>
 
-            <div class="meal" v-for="meal in todaysMeals" :key="meal.id">
+            <div class="meal" v-for="meal in $store.getters.todaysMeals" :key="meal.id">
                 <h4>{{meal.name}}</h4>
                 <span>{{meal.carbs * meal.portionSize}}g-{{meal.protein * meal.portionSize}}g-{{meal.fats * meal.portionSize}}g <strong>{{meal.calories * meal.portionSize}}kcal</strong></span>
             </div>
@@ -101,24 +101,6 @@ export default {
             goalFats: 55,
 
             /* meals */
-            todaysMeals: [
-                {
-                    "name": "Tost",
-                    "carbs": 30,
-                    "protein": 15,
-                    "fats": 10,
-                    "calories": 270,
-                    "portionSize" : 1,
-                },
-                {
-                    "name": "Tost",
-                    "carbs": 30,
-                    "protein": 15,
-                    "fats": 10,
-                    "calories": 270,
-                    "portionSize" : 1.5,
-                }
-            ],
         }
     },
     methods: {
@@ -126,22 +108,22 @@ export default {
             this.currentCalories = this.currentCarbs*4 + this.currentProtein*4 
                 + this.currentFats*9;
         },
-        addMeal(meal) {
-            this.todaysMeals.push({
-                "name": meal.name,
-                "carbs": meal.carbs,
-                "protein": meal.protein,
-                "fats": meal.fats,
-                "calories": meal.calories,
-                "portionSize": meal.portionSize 
-            });
+        // addMeal(meal) {
+        //     this.todaysMeals.push({
+        //         "name": meal.name,
+        //         "carbs": meal.carbs,
+        //         "protein": meal.protein,
+        //         "fats": meal.fats,
+        //         "calories": meal.calories,
+        //         "portionSize": meal.portionSize 
+        //     });
 
-            this.currentCarbs += meal.carbs * meal.portionSize;
-            this.currentProtein += meal.protein * meal.portionSize;
-            this.currentFats += meal.fats * meal.portionSize;
+        //     this.currentCarbs += meal.carbs * meal.portionSize;
+        //     this.currentProtein += meal.protein * meal.portionSize;
+        //     this.currentFats += meal.fats * meal.portionSize;
 
-            this.update();
-        }
+        //     this.update();
+        // }
     }
 }
 </script>
