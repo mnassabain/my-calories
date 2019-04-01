@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+Vue.use(VueRouter)
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBreadSlice } from '@fortawesome/free-solid-svg-icons'
@@ -21,8 +25,6 @@ library.add(faArrowLeft)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
-
-Vue.use(VueRouter)
 
 /* route components */
 import Home from './views/Home.vue'
