@@ -51,23 +51,6 @@
           <h4>{{meal.name}}</h4>
           <span>{{meal.carbs * meal.portionSize}}g-{{meal.protein * meal.portionSize}}g-{{meal.fats * meal.portionSize}}g <strong>{{meal.calories * meal.portionSize}}kcal</strong></span>
         </div>
-        
-        <!-- <div class="meal">
-          <h4>Tost</h4>
-          <span>30g-20g-18g <strong>354kcal</strong></span>
-        </div>
-        <div class="meal">
-          <h4>Tost</h4>
-          <span>30g-20g-18g <strong>354kcal</strong></span>
-        </div>
-        <div class="meal">
-          <h4>Tost</h4>
-          <span>30g-20g-18g <strong>354kcal</strong></span>
-        </div>
-        <div class="meal">
-          <h4>Tost</h4>
-          <span>30g-20g-18g <strong>354kcal</strong></span>
-        </div> -->
 
       </div>
 
