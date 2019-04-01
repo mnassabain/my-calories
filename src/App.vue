@@ -68,7 +68,6 @@
         </div>
       </div>
 
-      <button id="create-meal"><font-awesome-icon icon="hamburger"/></button>
       <button id="add-meal" v-on:click="update()"><font-awesome-icon icon="plus"/></button>
 
     </div>
@@ -99,7 +98,8 @@ export default {
         {
           padding: {top: 0, bottom: 0, right: 0, left: 0},
           margin: {top: 0, bottom: 0, right: 0, left: 0},
-        }
+        },
+        colors: [ '#c4f1be', '#76f7bf', '#35524a',],
       },
       series: [800, 300, 700],
       labels: ["Carbohydrates", "Protein", "Fat"],
@@ -229,9 +229,14 @@ export default {
   padding: 0;
 }
 
+.meals hr
+{
+  margin-bottom: 15px;
+}
+
 .meal
 {
-  background-color: #d6ffe6;
+  background-image: linear-gradient(to top right, #c6f2d8, #ffffff);
   padding: 10px 20px;
   margin-bottom: 10px;
 }
@@ -288,6 +293,7 @@ button#create-meal
   padding: 20px 20px;
   grid-area: header;
   background-image: linear-gradient(to top right, #134E5E, #71B280);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   position: fixed;
   top:0;
