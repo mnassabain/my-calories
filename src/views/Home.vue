@@ -50,7 +50,7 @@
 
         </div>
 
-        <button id="add-meal" v-on:click="addMeal()"><font-awesome-icon icon="plus"/></button>
+        <router-link to="/addMeal" id="add-meal" v-on:click="addMeal()"><font-awesome-icon icon="plus"/></router-link>
 
     </div>
 
@@ -254,7 +254,7 @@ export default {
     padding: 0;
 }
 
-button
+#add-meal
 {
     border: none;
     background-color: #58ACFA;
@@ -266,9 +266,12 @@ button
     font-size: 2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button#add-meal
+#add-meal
 {
     position: fixed;
     bottom: 30px;
@@ -281,7 +284,6 @@ button#add-meal
 {
     margin: 0;
     padding: 0;
-    margin-top: 90px;
     z-index: -1;
 
     display: grid;

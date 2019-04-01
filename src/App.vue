@@ -93,6 +93,7 @@ export default {
 {
   margin: 0;
   padding: 0px 25px;
+  margin-top: 85px;
 }
 
 </style>

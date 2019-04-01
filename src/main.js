@@ -24,15 +24,18 @@ Vue.use(VueRouter)
 
 /* route components */
 import Home from './views/Home.vue'
+import AddMeal from './views/AddMeal.vue'
 
 /* define routes */
 const routes = [
-  {'path': '/', component: Home}
+  {'path': '/', component: Home},
+  {'path': '/addMeal', component: AddMeal}
 ]
 
 /* create router */
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history',
 })
 
 
