@@ -25,11 +25,13 @@ Vue.use(VueRouter)
 /* route components */
 import Home from './views/Home.vue'
 import CreateMeal from './views/CreateMeal.vue'
+import AddMeal from './views/AddMeal.vue'
 
 /* define routes */
 const routes = [
   {'path': '/', component: Home},
-  {'path': '/createMeal', component: CreateMeal}
+  {'path': '/createMeal', component: CreateMeal},
+  {'path': '/addMeal', component: AddMeal}
 ]
 
 /* create router */
