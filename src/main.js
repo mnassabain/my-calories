@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import App from './App.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -19,6 +20,23 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
+Vue.use(VueRouter)
+
+/* route components */
+import Home from './views/Home.vue'
+
+/* define routes */
+const routes = [
+  {'path': '/', component: Home}
+]
+
+/* create router */
+const router = new VueRouter({
+  routes
+})
+
+
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
