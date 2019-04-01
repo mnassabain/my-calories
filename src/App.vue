@@ -46,7 +46,13 @@
       <div class="meals">
         <h3>Todays meals</h3>
         <hr>
-        <div class="meal">
+
+        <div class="meal" v-for="meal in todaysMeals">
+          <h4>{{meal.name}}</h4>
+          <span>{{meal.carbs * meal.portionSize}}g-{{meal.protein * meal.portionSize}}g-{{meal.fats * meal.portionSize}}g <strong>{{meal.calories * meal.portionSize}}kcal</strong></span>
+        </div>
+        
+        <!-- <div class="meal">
           <h4>Tost</h4>
           <span>30g-20g-18g <strong>354kcal</strong></span>
         </div>
@@ -61,11 +67,8 @@
         <div class="meal">
           <h4>Tost</h4>
           <span>30g-20g-18g <strong>354kcal</strong></span>
-        </div>
-        <div class="meal">
-          <h4>Tost</h4>
-          <span>30g-20g-18g <strong>354kcal</strong></span>
-        </div>
+        </div> -->
+
       </div>
 
       <button id="add-meal" v-on:click="update()"><font-awesome-icon icon="plus"/></button>
@@ -116,6 +119,26 @@ export default {
 
       currentFats: 30,
       goalFats: 55,
+
+      /* meals */
+      todaysMeals: [
+        {
+          "name": "Tost",
+          "carbs": 30,
+          "protein": 15,
+          "fats": 10,
+          "calories": 270,
+          "portionSize" : 1,
+        },
+        {
+          "name": "Tost",
+          "carbs": 30,
+          "protein": 15,
+          "fats": 10,
+          "calories": 270,
+          "portionSize" : 1.5,
+        }
+      ],
     }
   },
   methods: {
