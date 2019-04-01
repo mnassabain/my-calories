@@ -35,7 +35,7 @@
                 <font-awesome-icon icon="fish"/>
                 <span>{{currentFats}}g/{{goalFats}}g</span>
             </div>
-        
+
         </div>
 
 

@@ -45,7 +45,23 @@ const router = new VueRouter({
 })
 
 
+const store = new Vuex.Store({
+  state: {
+    myMeals: [],
+  },
+  mutations: {
+    addMeal(state, meal) {
+      state.myMeals.push(meal);
+    }
+  },
+  getters: {
+    myMeals: state => state.myMeals,
+  }
+})
+
+
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

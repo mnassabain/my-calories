@@ -1,10 +1,18 @@
 <template>
-    <div class="container"></div>
+    <div class="container">
+        <button @click="addMeal">Click me</button>
+        <p>{{$store.getters.myMeals}}</p>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'addmeal'
+    name: 'addmeal',
+    methods: {
+        addMeal() {
+            this.$store.commit('addMeal', {"name": "bljak"});
+        }
+    }
 }
 </script>
 
