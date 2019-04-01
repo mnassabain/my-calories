@@ -2,7 +2,10 @@
   <div id="app">
 
     <div class="header">
-      <font-awesome-icon id="bars" icon="bars"></font-awesome-icon>
+      <font-awesome-icon v-if="$route.name == 'home'" id="bars" icon="bars"></font-awesome-icon>
+      <router-link to="/" v-else>
+        <font-awesome-icon id="bars" icon="arrow-left"></font-awesome-icon>
+      </router-link>
       <h1>MyCalories</h1>
     </div>
 
@@ -14,8 +17,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-
 
 export default {
   name: 'app',
