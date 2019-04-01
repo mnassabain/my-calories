@@ -19,7 +19,7 @@
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 
 export default {
-    name: 'addmeal',
+    name: 'createmeal',
     components: {
         'number-input': VueNumberInput,
     },
