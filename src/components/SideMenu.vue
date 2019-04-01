@@ -2,9 +2,9 @@
     <div class="menu">
         <font-awesome-icon id="bars" icon="arrow-left" @click="closeMenu"></font-awesome-icon>
         <ul>
-            <li><h3>Create meal</h3></li>
-            <li><h3>Enter weight</h3></li>
-            <li><h3>Modify goals</h3></li>
+            <li><router-link to="/createMeal" class="menu-link" @click.native="closeMenu">Create meal</router-link></li>
+            <li><router-link to="" class="menu-link" @click.native="closeMenu">Enter weight</router-link></li>
+            <li><router-link to="" class="menu-link" @click.native="closeMenu">Modify goals</router-link></li>
         </ul>
     </div>
 </template>
@@ -25,13 +25,14 @@ export default {
 <style>
 .menu
 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-image: linear-gradient(to top right, #134E5E, #71B280);
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 5;
-    width: 40%;
+    width: 45%;
     padding: 20px 20px;
 }
 
@@ -58,6 +59,21 @@ export default {
     color: white;
     font-size: 1.1em;
     margin-bottom: 15px;
+}
+
+.menu .menu-link
+{
+    text-decoration: none;
+    color: white;
+
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.menu h3
+{
+    text-decoration: none;
+    color: white;
 }
 
 #bars
