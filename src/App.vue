@@ -2,9 +2,9 @@
     <div id="app">
 
     <div class="header">
-    <font-awesome-icon v-if="$route.name == 'home'" id="bars" icon="bars"></font-awesome-icon>
+    <font-awesome-icon v-if="$route.name == 'home' && !menuVisible" id="bars" class="nav-button" icon="bars" @click="showMenu"></font-awesome-icon>
     <router-link to="/" v-else>
-        <font-awesome-icon id="bars" icon="arrow-left"></font-awesome-icon>
+        <font-awesome-icon id="arrow" class="nav-button" icon="arrow-left"></font-awesome-icon>
     </router-link>
     <h1>MyCalories</h1>
     </div>
@@ -13,24 +13,37 @@
             <router-view></router-view>
         </div>
 
+    <side-menu v-if="menuVisible" @closeMenu="hideMenu"></side-menu>
+
     </div>
 </template>
 
 <script>
+import SideMenu from './components/SideMenu.vue';
 
 export default {
     name: 'app',
     components: {
+        'side-menu': SideMenu,
     },
 
     data: function() {
 		return {
+            menuVisible: false,
         }
     },
 
     methods: {
-    }
+        showMenu: function() {
+            this.menuVisible = true;
+        },
+        
+        hideMenu: function() {
+            this.menuVisible = false;
+        }
+    },
 }
+
 
 </script>
 
@@ -83,7 +96,7 @@ export default {
     order: 2;
 }
 
-.header #bars
+.header .nav-button
 {
     color: white;
     font-size: 1.7em;

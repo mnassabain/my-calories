@@ -60,11 +60,10 @@
 <script>
 import VueApexCharts from 'vue-apexcharts';
 
-
 export default {
     name: 'home',
     components: {
-        'apexchart': VueApexCharts
+        'apexchart': VueApexCharts,
     },
 
     data: function() {
@@ -275,4 +274,5 @@ export default {
         'pie-chart macros macros'
         'meals meals meals';
 }
+
 </style>
