@@ -128,6 +128,22 @@ export default {
     update() {
       this.currentCalories = this.currentCarbs*4 + this.currentProtein*4 
         + this.currentFats*9;
+    },
+    addMeal(meal) {
+      this.todaysMeals.push({
+        "name": meal.name,
+        "carbs": meal.carbs,
+        "protein": meal.protein,
+        "fats": meal.fats,
+        "calories": meal.calories,
+        "portionSize": meal.portionSize 
+      });
+
+      this.currentCarbs += meal.carbs * meal.portionSize;
+      this.currentProtein += meal.protein * meal.portionSize;
+      this.currentFats += meal.fats * meal.portionSize;
+
+      this.update();
     }
   }
 }
