@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h2>My meals</h2>
         <div class="meal" v-for="meal in $store.getters.myMeals" :key="meal.id">
             <h4>{{meal.name}}</h4>
             <span>{{meal.carbs}}g-{{meal.protein}}g-{{meal.fats}}g <strong>{{meal.calories}}kcal</strong></span>
@@ -26,5 +27,21 @@ export default {
 </script>
 
 <style>
+.container h2
+{
+    margin-bottom: 20px;
+}
 
+.meal
+{
+    background-image: linear-gradient(to top right, #c6f2d8, #ffffff);
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.meal h4
+{
+    margin: 0;
+    padding: 0;
+}
 </style>
