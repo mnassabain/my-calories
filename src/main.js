@@ -48,14 +48,19 @@ const router = new VueRouter({
 const store = new Vuex.Store({
   state: {
     todaysMeals: [],
+    myMeals: [],
   },
   mutations: {
     addMeal(state, meal) {
       state.todaysMeals.push(meal);
+    },
+    createMeal(state, meal) {
+      state.myMeals.push(meal);
     }
   },
   getters: {
     todaysMeals: state => state.todaysMeals,
+    myMeals: state => state.myMeals,
   }
 })
 

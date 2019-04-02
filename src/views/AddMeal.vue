@@ -1,7 +1,9 @@
 <template>
     <div class="container">
-        <button @click="addMeal">Click me</button>
-        <p>{{$store.getters.todaysMeals}}</p>
+        <div class="meal" v-for="meal in $store.getters.myMeals" :key="meal.id">
+            <h4>{{meal.name}}</h4>
+            <span>{{meal.carbs}}g-{{meal.protein}}g-{{meal.fats}}g <strong>{{meal.calories}}kcal</strong></span>
+        </div>
     </div>
 </template>
 
