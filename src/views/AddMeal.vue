@@ -7,7 +7,7 @@
             <h4>{{meal.name}}</h4>
             <span>{{meal.carbs}}g-{{meal.protein}}g-{{meal.fats}}g <strong>{{meal.calories}}kcal</strong></span>
             <div v-if="clicked == mealIndex" class="portion-size">
-                <input type="number" :value="portionSize" min="0" step="0.5"/>
+                <input type="number" v-model="portionSize" min="0" step="0.5"/>
                 <button id="add-button" @click="addMeal(meal)">Add</button>
             </div>
         </div>

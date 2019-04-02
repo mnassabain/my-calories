@@ -13,7 +13,7 @@
         </div>
 
         <div class="pie-chart">
-            <apexchart width="200" type="pie" :options="options" :series="series"
+            <apexchart width="200" type="pie" :options="options" :series="series" :labels="labels"
                 id="chart">
             </apexchart>
         </div>
@@ -82,47 +82,44 @@ export default {
                     margin: {top: 0, bottom: 0, right: 0, left: 0},
                 },
                 colors: [ '#c4f1be', '#76f7bf', '#35524a',],
+                labels: ["Carbohydrates", "Protein", "Fat"],
             },
-            series: [800, 300, 700],
-            labels: ["Carbohydrates", "Protein", "Fat"],
+            series: [],
 
             /* other */
-            currentCalories: 1750,
+            currentCalories: 0,
             goalCalories: 2500,
 
-            currentCarbs: 270,
+            currentCarbs: 0,
             goalCarbs: 350,
 
-            currentProtein: 80,
+            currentProtein: 0,
             goalProtein: 120,
 
-            currentFats: 30,
+            currentFats: 0,
             goalFats: 55,
 
             /* meals */
+            todaysMeals: null,
         }
     },
     methods: {
         update() {
-            this.currentCalories = this.currentCarbs*4 + this.currentProtein*4 
-                + this.currentFats*9;
+            /* get values */
+            this.todaysMeals.forEach(element => {
+                this.currentCarbs += element.carbs * element.portionSize;                
+                this.currentProtein += element.protein * element.portionSize;
+                this.currentFats += element.fats * element.portionSize;
+                this.currentCalories += element.calories * element.portionSize;
+            });
         },
-        // addMeal(meal) {
-        //     this.todaysMeals.push({
-        //         "name": meal.name,
-        //         "carbs": meal.carbs,
-        //         "protein": meal.protein,
-        //         "fats": meal.fats,
-        //         "calories": meal.calories,
-        //         "portionSize": meal.portionSize 
-        //     });
-
-        //     this.currentCarbs += meal.carbs * meal.portionSize;
-        //     this.currentProtein += meal.protein * meal.portionSize;
-        //     this.currentFats += meal.fats * meal.portionSize;
-
-        //     this.update();
-        // }
+    },
+    beforeMount(){
+        this.todaysMeals = this.$store.getters.todaysMeals;
+        this.update();
+    },
+    mounted() {
+        this.series = [this.currentCarbs*4, this.currentProtein*4, this.currentFats*9];
     }
 }
 </script>
