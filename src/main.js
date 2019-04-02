@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
@@ -45,6 +46,13 @@ const router = new VueRouter({
 })
 
 
+/* vuex persist */
+const vuexPersist = new VuexPersist({
+  key: 'my-calories',
+  storage: localStorage
+})
+
+
 const store = new Vuex.Store({
   state: {
     todaysMeals: [],
@@ -61,7 +69,8 @@ const store = new Vuex.Store({
   getters: {
     todaysMeals: state => state.todaysMeals,
     myMeals: state => state.myMeals,
-  }
+  },
+  plugins: [vuexPersist.plugin],
 })
 
 
