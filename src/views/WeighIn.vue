@@ -5,8 +5,6 @@
             <span>Enter new weight</span>
             <number-input :min="0" :step="0.1" size="small" placeholder="Weight(kg)" inline center class="nb-input" v-model="weight"></number-input>
             <button id="add-weight" @click="addWeight">Add weight</button>
-
-            <p>{{$store.getters.weightHistory}}</p>
         </div>
     </div>
 </template>
