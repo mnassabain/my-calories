@@ -1,5 +1,15 @@
 # calorie-counter
 
+## About
+
+**Easy way to track your calories.**
+
+* Specify your goals  
+* Create your own custom meals
+* Track daily calories & macros
+* Track your weight
+
+
 ## Project setup
 ```
 npm install
