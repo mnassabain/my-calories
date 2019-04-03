@@ -33,12 +33,14 @@ Vue.config.productionTip = false
 import Home from './views/Home.vue'
 import CreateMeal from './views/CreateMeal.vue'
 import AddMeal from './views/AddMeal.vue'
+import WeighIn from './views/WeighIn.vue'
 
 /* define routes */
 const routes = [
   {'path': '/', component: Home, name: 'home'},
   {'path': '/createMeal', component: CreateMeal, name: 'createMeal'},
-  {'path': '/addMeal', component: AddMeal, name: 'addMeal'}
+  {'path': '/addMeal', component: AddMeal, name: 'addMeal'},
+  {'path': '/weighIn', component: WeighIn, name: 'weighIn'},
 ]
 
 /* create router */

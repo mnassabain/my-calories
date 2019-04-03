@@ -3,7 +3,7 @@
         <font-awesome-icon id="bars" icon="arrow-left" @click="closeMenu"></font-awesome-icon>
         <ul>
             <li><router-link to="/createMeal" class="menu-link" @click.native="closeMenu">Create meal</router-link></li>
-            <li><router-link to="" class="menu-link" @click.native="closeMenu">Enter weight</router-link></li>
+            <li><router-link to="/weighIn" class="menu-link" @click.native="closeMenu">Enter weight</router-link></li>
             <li><router-link to="" class="menu-link" @click.native="closeMenu">Modify goals</router-link></li>
         </ul>
     </div>
@@ -16,7 +16,7 @@ export default {
     methods: {
         closeMenu() {
             this.$emit('closeMenu');
-        }
+        },
     }
 }
 

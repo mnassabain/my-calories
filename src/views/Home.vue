@@ -13,8 +13,7 @@
         </div>
 
         <div class="pie-chart">
-            <apexchart width="200" type="pie" :options="options" :series="series" :labels="labels"
-                id="chart">
+            <apexchart width="200" type="pie" :options="options" :series="series" id="chart">
             </apexchart>
         </div>
 
@@ -43,9 +42,12 @@
             <h3>Todays meals</h3>
             <hr>
 
-            <div class="meal" v-for="meal in $store.getters.todaysMeals" :key="meal.id">
-                <h4>{{meal.name}}</h4>
-                <span>{{meal.carbs * meal.portionSize}}g-{{meal.protein * meal.portionSize}}g-{{meal.fats * meal.portionSize}}g <strong>{{meal.calories * meal.portionSize}}kcal</strong></span>
+            <div class="meal" v-for="(meal, mealIndex) in $store.getters.todaysMeals" :key="meal.id">
+                <div class="info">
+                    <h4>{{meal.name}}</h4>
+                    <span>{{meal.carbs * meal.portionSize}}g-{{meal.protein * meal.portionSize}}g-{{meal.fats * meal.portionSize}}g <strong>{{meal.calories * meal.portionSize}}kcal</strong></span>
+                </div>
+                <font-awesome-icon icon="trash-alt" class="delete-button" @click="removeMeal(mealIndex)"/>
             </div>
 
         </div>
@@ -113,6 +115,11 @@ export default {
                 this.currentCalories += element.calories * element.portionSize;
             });
         },
+        removeMeal(mealIndex) {
+            this.$store.commit('removeTodaysMeal', mealIndex);
+            this.currentCalories = this.currentCarbs = this.currentProtein = this.currentFats = 0;
+            this.update();
+        }
     },
     beforeMount(){
         this.todaysMeals = this.$store.getters.todaysMeals;
@@ -217,12 +224,21 @@ export default {
     background-image: linear-gradient(to top right, #c6f2d8, #ffffff);
     padding: 10px 20px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .meal h4
 {
     margin: 0;
     padding: 0;
+}
+
+.meal .delete-button
+{
+    font-size: 1.2em;
 }
 
 .date
