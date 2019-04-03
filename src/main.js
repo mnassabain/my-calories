@@ -61,6 +61,7 @@ const store = new Vuex.Store({
   state: {
     todaysMeals: [],
     myMeals: [],
+    weightHistory: [],
   },
   mutations: {
     addMeal(state, meal) {
@@ -71,11 +72,15 @@ const store = new Vuex.Store({
     },
     removeTodaysMeal(state, mealIndex) {
       state.todaysMeals.splice(mealIndex, 1);
+    },
+    addWeight(state, element) {
+      state.weightHistory.push(element);
     }
   },
   getters: {
     todaysMeals: state => state.todaysMeals,
     myMeals: state => state.myMeals,
+    weightHistory: state => state.weightHistory,
   },
   plugins: [vuexPersist.plugin],
 })
