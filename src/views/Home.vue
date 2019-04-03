@@ -89,6 +89,8 @@ export default {
             series: [],
 
             /* other */
+            goals: null,
+
             currentCalories: 0,
             goalCalories: 2500,
 
@@ -123,10 +125,16 @@ export default {
     },
     beforeMount(){
         this.todaysMeals = this.$store.getters.todaysMeals;
+        this.goals = this.$store.getters.goals;
         this.update();
     },
     mounted() {
         this.series = [this.currentCarbs*4, this.currentProtein*4, this.currentFats*9];
+
+        this.goalCarbs = this.goals.carbs;
+        this.goalProtein = this.goals.protein;
+        this.goalFats = this.goals.fats;
+        this.goalCalories = this.goals.calories;
     }
 }
 </script>

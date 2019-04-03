@@ -34,6 +34,8 @@ import Home from './views/Home.vue'
 import CreateMeal from './views/CreateMeal.vue'
 import AddMeal from './views/AddMeal.vue'
 import WeighIn from './views/WeighIn.vue'
+import WeightHistory from './views/WeightHistory.vue'
+import ModifyGoals from './views/ModifyGoals.vue'
 
 /* define routes */
 const routes = [
@@ -41,6 +43,8 @@ const routes = [
   {'path': '/createMeal', component: CreateMeal, name: 'createMeal'},
   {'path': '/addMeal', component: AddMeal, name: 'addMeal'},
   {'path': '/weighIn', component: WeighIn, name: 'weighIn'},
+  {'path': '/weightHistory', component: WeightHistory, name: 'weightHistory'},
+  {'path': '/modifyGoals', component: ModifyGoals, name: 'modifyGoals'},
 ]
 
 /* create router */
@@ -62,6 +66,12 @@ const store = new Vuex.Store({
     todaysMeals: [],
     myMeals: [],
     weightHistory: [],
+    goals: {
+      'carbs': 0,
+      'protein': 0,
+      'fats': 0,
+      'calories': 0,
+    },
   },
   mutations: {
     addMeal(state, meal) {
@@ -75,12 +85,19 @@ const store = new Vuex.Store({
     },
     addWeight(state, element) {
       state.weightHistory.push(element);
+    },
+    updateGoals(state, goals) {
+      state.goals.carbs = goals.carbs;
+      state.goals.protein = goals.protein;
+      state.goals.fats = goals.fats;
+      state.goals.calories = goals.calories;
     }
   },
   getters: {
     todaysMeals: state => state.todaysMeals,
     myMeals: state => state.myMeals,
     weightHistory: state => state.weightHistory,
+    goals: state => state.goals,
   },
   plugins: [vuexPersist.plugin],
 })
