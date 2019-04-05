@@ -91,6 +91,9 @@ const store = new Vuex.Store({
       state.goals.protein = goals.protein;
       state.goals.fats = goals.fats;
       state.goals.calories = goals.calories;
+    },
+    removeWeightEntry(state, entryIndex) {
+      state.weightHistory.splice(entryIndex, 1);
     }
   },
   getters: {

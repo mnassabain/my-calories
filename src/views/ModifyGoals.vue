@@ -37,7 +37,7 @@ export default {
             this.calories = this.carbs*4 + this.protein*4 + this.fats*9;
         },
         updateGoals() {
-            if (this.protein == 0 || this.carbs == 0 || this.fats == 0)
+            if (this.protein == 0 || this.carbs == 0 || this.fats == 0)
                 return; 
 
             this.$store.commit('updateGoals', {
