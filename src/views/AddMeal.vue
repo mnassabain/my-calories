@@ -39,7 +39,12 @@ export default {
             this.$router.push({name: 'home'});
         },
         togglePortionSize(index) {
-            this.clicked = index;
+            if (this.clicked != index) {
+                this.clicked = index;
+            }
+            else {
+                this.clicked = -1;
+            }
         }
     }
 }
