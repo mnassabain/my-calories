@@ -64,8 +64,8 @@ export default {
             this.$store.commit('removeWeightEntry', entryIndex);
             this.weightHistory = this.$store.getters.weightHistory;
         },
-        getDateString(entry) {
-            return moment(entry.date).format('MMMM Do YYYY');
+        getDateString(date) {
+            return moment(date).format('MMMM Do YYYY');
         }
     }
 }
