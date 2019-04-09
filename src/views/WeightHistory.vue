@@ -8,9 +8,8 @@
             <h3>Previous entries</h3>
             <hr>
             <div class="weight-entry" v-for="(entry, entryIndex) in weightHistory" :key="entry.id">
-                <!-- {{entry.weight}} {{entry.date}} -->
                 <div class="info">
-                    <h4>{{convert(entry.date)}}</h4>
+                    <h4>{{getDateString(entry.date)}}</h4>
                     <span>{{entry.weight}}kg</span>
                 </div>
                 <font-awesome-icon icon="trash-alt" class="delete-button" @click="removeEntry(entryIndex)"/>
@@ -21,6 +20,7 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts';
+import moment from 'moment';
 
 export default {
     name: 'weightHistory',
@@ -52,24 +52,20 @@ export default {
     },
     beforeMount() {
         this.weightHistory = this.$store.getters.weightHistory;
-        // console.log("before mount");
     },
     mounted() {
         this.weightHistory.forEach(element => {
             this.series[0].data.push(element.weight);
             this.options.xaxis.categories.push(element.date);
         });
-        // console.log(this.options.xaxis.categories);
-        // console.log(this.series[0].data);
     },
     methods: {
         removeEntry(entryIndex) {
             this.$store.commit('removeWeightEntry', entryIndex);
             this.weightHistory = this.$store.getters.weightHistory;
         },
-        convert(date) {
-            return Date(date).toString().substring(0, 24);
-            // return date;
+        getDateString(entry) {
+            return moment(entry.date).format('MMMM Do YYYY');
         }
     }
 }
