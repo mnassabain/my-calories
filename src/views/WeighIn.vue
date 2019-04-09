@@ -11,6 +11,7 @@
 
 <script>
 import VueNumberInput from '@chenfengyuan/vue-number-input';
+import moment from 'moment';
 
 export default {
     name: 'weighIn',    
@@ -29,7 +30,7 @@ export default {
                 return;
             }
             this.$store.commit('addWeight', {
-                'date': new Date(), 
+                'date': new moment(), 
                 'weight': this.weight
             });
             this.$router.push('/');
