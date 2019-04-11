@@ -30,6 +30,9 @@ export default new Vuex.Store({
         createMeal(state, meal) {
             state.myMeals.push(meal);
         },
+        removeMeal(state, mealIndex) {
+            state.myMeals.splice(mealIndex, 1);
+        },
         removeTodaysMeal(state, mealIndex) {
             state.todaysMeals.splice(mealIndex, 1);
         },
