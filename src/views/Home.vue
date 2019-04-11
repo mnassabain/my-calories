@@ -130,6 +130,11 @@ export default {
             this.current.calories = this.current.carbs = this.current.protein = 
                 this.current.fats = 0;
             this.update();
+
+            this.series = [
+                this.current.carbs*4, this.current.protein*4, 
+                this.current.fats*9
+            ];
         },
         getCurrentDate() {
             var date = moment(this.$store.getters.date);
