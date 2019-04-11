@@ -13,9 +13,11 @@ const vuexPersist = new VuexPersist({
 /* vuex store */
 export default new Vuex.Store({
     state: {
+        date: undefined,
         todaysMeals: [],
         myMeals: [],
         weightHistory: [],
+        mealHistory: [],
         goals: {
             'carbs': 0,
             'protein': 0,
@@ -47,6 +49,16 @@ export default new Vuex.Store({
         },
         removeWeightEntry(state, entryIndex) {
             state.weightHistory.splice(entryIndex, 1);
+        },
+        /* add todays meals to meal history */
+        addTodaysMeals(state, entry) {
+            state.mealHistory.push({
+                'date': entry.date,
+                'meals': entry.meals,
+            });
+        },
+        updateDate(state, date) {
+            state.date = date;
         }
     },
     getters: {
@@ -54,6 +66,8 @@ export default new Vuex.Store({
         myMeals: state => state.myMeals,
         weightHistory: state => state.weightHistory,
         goals: state => state.goals,
+        mealHistory: state => state.mealHistory,
+        date: state => state.date,
     },
     plugins: [vuexPersist.plugin],
 })

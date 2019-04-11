@@ -3,7 +3,7 @@
     <div class="container">
 
         <div class="date">
-            <h3>March 30, 2019</h3>
+            <h3>{{getCurrentDate()}}</h3>
         </div>
 
         <div class="overall-calories">
@@ -73,6 +73,7 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts';
+import moment from 'moment';
 
 export default {
     name: 'home',
@@ -129,9 +130,22 @@ export default {
             this.current.calories = this.current.carbs = this.current.protein = 
                 this.current.fats = 0;
             this.update();
+        },
+        getCurrentDate() {
+            var date = this.$store.getters.date;
+            return date.format('MMMM Do, YYYY');
         }
     },
-    beforeMount(){
+    beforeMount() {
+        /* check if today is a new day */
+        var lastDate = this.$store.getters.date;
+
+        var checkDate = new moment();
+
+        if (checkDate != lastDate) {
+            this.$store.commit('updateDate', checkDate);
+        } 
+        
         this.todaysMeals = this.$store.getters.todaysMeals;
         this.goals = this.$store.getters.goals;
         this.update();
