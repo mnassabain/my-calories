@@ -1,25 +1,42 @@
 <template>
     <div class="container">
+
         <h2>New meal</h2>
 
         <form>
             <div class="form-entry">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" placeholder="Name" v-model="mealName" v-bind:class="{redline: missingName}">
+                <input type="text" placeholder="Name" v-model="mealName" 
+                    v-bind:class="{redline: missingName}">
             </div>
 
             <div class="macros">
-                <number-input :min="0" size="small" placeholder="Carbs" inline center controls class="nb-input" v-model="carbs" @change="update"></number-input>
-                <number-input :min="0" size="small" placeholder="Protein" inline center controls class="nb-input" v-model="protein" @change="update"></number-input>
-                <number-input :min="0" size="small" placeholder="Fats" inline center controls class="nb-input" v-model="fats" @change="update"></number-input>
+
+                <number-input :min="0" size="small" placeholder="Carbs" 
+                    inline center controls class="nb-input" v-model="carbs" 
+                    @change="update">
+                </number-input>
+
+                <number-input :min="0" size="small" placeholder="Protein" 
+                    inline center controls class="nb-input" v-model="protein" 
+                    @change="update">
+                </number-input>
+                
+                <number-input :min="0" size="small" placeholder="Fats" 
+                    inline center controls class="nb-input" v-model="fats" 
+                    @change="update">
+                </number-input>
 
                 <br><br>
 
-                <number-input size="small" placeholder="calories" :value="calories" inline center readonly></number-input>
+                <number-input size="small" placeholder="calories" 
+                    :value="calories" inline center readonly>
+                </number-input>
                 
             </div>
 
-            <button type="button" id="create-button" @click="create">Create</button>
+            <button type="button" id="create-button" @click="create">
+                Create
+            </button>
 
         </form>
     </div>

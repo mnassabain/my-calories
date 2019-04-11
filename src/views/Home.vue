@@ -7,13 +7,14 @@
         </div>
 
         <div class="overall-calories">
-            <h2>{{currentCalories}} kcal</h2>
+            <h2>{{current.calories}} kcal</h2>
             <hr>
-            <h3>{{goalCalories}} kcal</h3>
+            <h3>{{goals.calories}} kcal</h3>
         </div>
 
         <div class="pie-chart">
-            <apexchart width="200" type="pie" :options="options" :series="series" id="chart">
+            <apexchart width="200" type="pie" :options="options" 
+                :series="series" id="chart">
             </apexchart>
         </div>
 
@@ -22,17 +23,17 @@
 
             <div class="macro">
                 <font-awesome-icon icon="bread-slice"/>
-                <span>{{currentCarbs}}g/{{goalCarbs}}g</span>
+                <span>{{current.carbs}}g/{{goals.carbs}}g</span>
             </div>
 
             <div class="macro">
                 <font-awesome-icon icon="drumstick-bite"/>
-                <span>{{currentProtein}}g/{{goalProtein}}g</span>
+                <span>{{current.protein}}g/{{goals.protein}}g</span>
             </div>
             
             <div class="macro">
                 <font-awesome-icon icon="fish"/>
-                <span>{{currentFats}}g/{{goalFats}}g</span>
+                <span>{{current.fats}}g/{{goals.fats}}g</span>
             </div>
 
         </div>
@@ -42,17 +43,28 @@
             <h3>Todays meals</h3>
             <hr>
 
-            <div class="meal" v-for="(meal, mealIndex) in $store.getters.todaysMeals" :key="meal.id">
+            <div class="meal" v-for="(meal, mealIndex) 
+                in $store.getters.todaysMeals" :key="meal.id">
                 <div class="info">
                     <h4>{{meal.name}}</h4>
-                    <span>{{meal.carbs * meal.portionSize}}g-{{meal.protein * meal.portionSize}}g-{{meal.fats * meal.portionSize}}g <strong>{{meal.calories * meal.portionSize}}kcal</strong></span>
+                    <span>
+                        {{meal.carbs * meal.portionSize}}g-
+                        {{meal.protein * meal.portionSize}}g-
+                        {{meal.fats * meal.portionSize}}g 
+                        <strong>
+                            {{meal.calories * meal.portionSize}}kcal
+                        </strong>
+                    </span>
                 </div>
-                <font-awesome-icon icon="trash-alt" class="delete-button" @click="removeMeal(mealIndex)"/>
+                <font-awesome-icon icon="trash-alt" class="delete-button" 
+                    @click="removeMeal(mealIndex)"/>
             </div>
 
         </div>
 
-        <router-link to="/addMeal" id="add-meal" v-on:click="addMeal()"><font-awesome-icon icon="plus"/></router-link>
+        <router-link to="/addMeal" id="add-meal" v-on:click="addMeal()">
+            <font-awesome-icon icon="plus"/>
+        </router-link>
 
     </div>
 
@@ -89,19 +101,14 @@ export default {
             series: [],
 
             /* other */
-            goals: null,
+            goals: {},
 
-            currentCalories: 0,
-            goalCalories: 2500,
-
-            currentCarbs: 0,
-            goalCarbs: 350,
-
-            currentProtein: 0,
-            goalProtein: 120,
-
-            currentFats: 0,
-            goalFats: 55,
+            current: {
+                carbs: 0,
+                protein: 0,
+                fats: 0,
+                calories: 0,
+            },
 
             /* meals */
             todaysMeals: null,
@@ -111,15 +118,16 @@ export default {
         update() {
             /* get values */
             this.todaysMeals.forEach(element => {
-                this.currentCarbs += element.carbs * element.portionSize;                
-                this.currentProtein += element.protein * element.portionSize;
-                this.currentFats += element.fats * element.portionSize;
-                this.currentCalories += element.calories * element.portionSize;
+                this.current.carbs += element.carbs * element.portionSize;                
+                this.current.protein += element.protein * element.portionSize;
+                this.current.fats += element.fats * element.portionSize;
+                this.current.calories += element.calories * element.portionSize;
             });
         },
         removeMeal(mealIndex) {
             this.$store.commit('removeTodaysMeal', mealIndex);
-            this.currentCalories = this.currentCarbs = this.currentProtein = this.currentFats = 0;
+            this.current.calories = this.current.carbs = this.current.protein = 
+                this.current.fats = 0;
             this.update();
         }
     },
@@ -129,12 +137,9 @@ export default {
         this.update();
     },
     mounted() {
-        this.series = [this.currentCarbs*4, this.currentProtein*4, this.currentFats*9];
-
-        this.goalCarbs = this.goals.carbs;
-        this.goalProtein = this.goals.protein;
-        this.goalFats = this.goals.fats;
-        this.goalCalories = this.goals.calories;
+        this.series = [
+            this.current.carbs*4, this.current.protein*4, this.current.fats*9
+        ];
     }
 }
 </script>

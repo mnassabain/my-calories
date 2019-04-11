@@ -2,9 +2,18 @@
     <div class="container">
         <h2>Weigh In</h2>
         <div class="form">
+            
             <span>Enter new weight</span>
-            <number-input :min="0" :step="0.1" size="small" placeholder="Weight(kg)" inline center class="nb-input" v-model="weight"></number-input>
-            <button id="add-weight" @click="addWeight">Add weight</button>
+
+            <number-input :min="0" :step="0.1" size="small" 
+                placeholder="Weight(kg)" inline center class="nb-input" 
+                v-model="weight">
+            </number-input>
+            
+            <button id="add-weight" @click="addWeight">
+                Add weight
+            </button>
+            
         </div>
     </div>
 </template>

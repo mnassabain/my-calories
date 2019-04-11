@@ -2,17 +2,28 @@
     <div class="container">
         <h2>Weight History</h2>
 
-        <apexchart width="300" height="400" type="line" :options="options" :series="series"></apexchart>
+        <apexchart width="300" height="400" type="line" :options="options" 
+            :series="series">
+        </apexchart>
 
         <div class="history">
             <h3>Previous entries</h3>
             <hr>
-            <div class="weight-entry" v-for="(entry, entryIndex) in weightHistory" :key="entry.id">
+            <div class="weight-entry" 
+                v-for="(entry, entryIndex) in weightHistory" 
+                :key="entry.id">
+                
                 <div class="info">
+                    
                     <h4>{{getDateString(entry.date)}}</h4>
                     <span>{{entry.weight}}kg</span>
+                    
                 </div>
-                <font-awesome-icon icon="trash-alt" class="delete-button" @click="removeEntry(entryIndex)"/>
+
+                <font-awesome-icon icon="trash-alt" 
+                    class="delete-button" 
+                    @click="removeEntry(entryIndex)"/>
+                
             </div>
         </div>
     </div>

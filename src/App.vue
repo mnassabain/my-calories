@@ -1,13 +1,19 @@
 <template>
     <div id="app">
 
-    <div class="header">
-    <font-awesome-icon v-if="$route.name == 'home' && !menuVisible" id="bars" class="nav-button" icon="bars" @click="showMenu"></font-awesome-icon>
-    <router-link to="/" v-else>
-        <font-awesome-icon id="arrow" class="nav-button" icon="arrow-left"></font-awesome-icon>
-    </router-link>
-    <h1>MyCalories</h1>
-    </div>
+        <div class="header">
+            <font-awesome-icon v-if="$route.name == 'home' && !menuVisible" 
+                id="bars" class="nav-button" icon="bars" @click="showMenu">
+            </font-awesome-icon>
+            
+            <router-link to="/" v-else>
+                <font-awesome-icon id="arrow" class="nav-button" 
+                    icon="arrow-left">
+                </font-awesome-icon>
+            </router-link>
+
+            <h1>MyCalories</h1>
+        </div>
 
         <div class="main-container">
             <router-view></router-view>
@@ -43,8 +49,6 @@ export default {
         }
     },
 }
-
-
 </script>
 
 <style>

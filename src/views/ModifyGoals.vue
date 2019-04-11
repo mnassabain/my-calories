@@ -3,15 +3,27 @@
         <h2>Modify goals</h2>
 
         <div class="fields">
-            <number-input :min="0" size="small" placeholder="Carbs" inline center class="nb-input" v-model="carbs" @change="update"></number-input>
-            <number-input :min="0" size="small" placeholder="Protein" inline center class="nb-input" v-model="protein" @change="update"></number-input>
-            <number-input :min="0" size="small" placeholder="Fats" inline center class="nb-input" v-model="fats" @change="update"></number-input>
+            <number-input :min="0" size="small" placeholder="Carbs" inline 
+                center class="nb-input" v-model="carbs" @change="update">
+            </number-input>
+            
+            <number-input :min="0" size="small" placeholder="Protein" inline 
+                center class="nb-input" v-model="protein" @change="update">
+            </number-input>
+            
+            <number-input :min="0" size="small" placeholder="Fats" inline 
+                center class="nb-input" v-model="fats" @change="update">
+            </number-input>
         </div>
 
         <div class="result">
-            <number-input readonly inline center size="small" v-model="calories"></number-input>
+            <number-input readonly inline center size="small" 
+                v-model="calories">
+            </number-input>
 
-            <button id="update-goals" @click="updateGoals">Update</button>
+            <button id="update-goals" @click="updateGoals">
+                Update
+            </button>
         </div>
     </div>
 </template>

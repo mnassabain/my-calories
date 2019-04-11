@@ -1,24 +1,30 @@
 <template>
     <div class="container">
+        
         <h2>My meals</h2>
+        
         <div class="meal" v-for="(meal, mealIndex) in $store.getters.myMeals" 
-            :key="meal.id" 
-            @click="togglePortionSize(mealIndex)">
+            :key="meal.id" @click="togglePortionSize(mealIndex)">
+            
             <h4>{{meal.name}}</h4>
-            <span>{{meal.carbs}}g-{{meal.protein}}g-{{meal.fats}}g <strong>{{meal.calories}}kcal</strong></span>
+            
+            <span>{{meal.carbs}}g-{{meal.protein}}g-{{meal.fats}}g 
+                <strong>{{meal.calories}}kcal</strong>
+            </span>
+
             <div v-if="clicked == mealIndex" class="portion-size">
                 <input type="number" v-model="portionSize" min="0" step="0.5"/>
                 <button id="add-button" @click="addMeal(meal)">Add</button>
             </div>
+            
         </div>
+            
     </div>
 </template>
 
 <script>
 export default {
     name: 'addmeal',
-    components: {
-    },
     data: function() {
         return {
             portionSize: 1,
