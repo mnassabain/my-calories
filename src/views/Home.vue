@@ -139,6 +139,7 @@ export default {
     beforeMount() {
         this.todaysMeals = this.$store.getters.todaysMeals;
         this.goals = this.$store.getters.goals;
+        this.update();
         
         /* check if today is a new day */
         var lastDate = this.$store.getters.date;
@@ -152,15 +153,24 @@ export default {
                 this.$store.commit('addTodaysMeals', {
                     'date': lastDate,
                     'meals': this.todaysMeals,
+                    'macros': {
+                        'carbs': this.current.carbs,
+                        'protein': this.current.protein,
+                        'fats': this.current.fats,
+                        'calories': this.current.calories,
+                    }
                 });
 
                 this.$store.commit('clearTodaysMeals');
             }
 
             this.$store.commit('updateDate', checkDate);
+
+            this.todaysMeals = [];
+            this.current.calories = this.current.carbs = this.current.protein = 
+                this.current.fats = 0;
         } 
-        
-        this.update();
+
     },
     mounted() {
         this.series = [

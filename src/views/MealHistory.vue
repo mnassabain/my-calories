@@ -3,8 +3,15 @@
         <h2>Meal History</h2>
 
         <div class="meal" v-for="entry in mealHistory" :key="entry.id">
-            <span>{{formatDate(entry.date)}}</span>
-            <span>{{entry.meals}}</span>
+            <h4>{{formatDate(entry.date)}}</h4>
+            <span>
+                {{entry.macros.carbs}}g-
+                {{entry.macros.protein}}g-
+                {{entry.macros.fats}}g 
+                
+                <strong>{{entry.macros.calories}}kcal</strong>
+            </span>
+            <br>
         </div>
 
         <button @click="clearMealHistory">Clear</button>

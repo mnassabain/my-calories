@@ -55,10 +55,7 @@ export default new Vuex.Store({
         },
         /* add todays meals to meal history */
         addTodaysMeals(state, entry) {
-            state.mealHistory.push({
-                'date': entry.date,
-                'meals': entry.meals,
-            });
+            state.mealHistory.push(entry);
         },
         clearMealHistory(state) {
             state.mealHistory = [];
