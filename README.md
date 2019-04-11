@@ -6,9 +6,8 @@
 
 * Specify your goals  
 * Create your own custom meals
-* Track daily calories & macros
+* Track daily meals, calories & macros
 * Track your weight
-* Track daily meals
 
 
 ## Project setup
