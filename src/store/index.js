@@ -38,6 +38,9 @@ export default new Vuex.Store({
         removeTodaysMeal(state, mealIndex) {
             state.todaysMeals.splice(mealIndex, 1);
         },
+        clearTodaysMeals(state) {
+            state.todaysMeals = [];
+        },
         addWeight(state, element) {
             state.weightHistory.push(element);
         },
@@ -56,6 +59,9 @@ export default new Vuex.Store({
                 'date': entry.date,
                 'meals': entry.meals,
             });
+        },
+        clearMealHistory(state) {
+            state.mealHistory = [];
         },
         updateDate(state, date) {
             state.date = date;

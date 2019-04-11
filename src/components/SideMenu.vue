@@ -34,6 +34,13 @@
             </li>
 
             <li>
+                <router-link to="/mealHistory" class="menu-link" 
+                    @click.native="closeMenu">
+                        Meal History
+                </router-link>
+            </li>
+
+            <li>
                 <router-link to="/modifyGoals" class="menu-link" 
                     @click.native="closeMenu">
                         Modify goals

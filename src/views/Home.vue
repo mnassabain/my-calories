@@ -132,22 +132,30 @@ export default {
             this.update();
         },
         getCurrentDate() {
-            var date = this.$store.getters.date;
+            var date = moment(this.$store.getters.date);
             return date.format('MMMM Do, YYYY');
         }
     },
     beforeMount() {
+        this.todaysMeals = this.$store.getters.todaysMeals;
+        this.goals = this.$store.getters.goals;
+        
         /* check if today is a new day */
         var lastDate = this.$store.getters.date;
 
         var checkDate = new moment();
 
-        if (checkDate != lastDate) {
+        if (checkDate.dayOfYear() != moment(lastDate).dayOfYear()) {
+            this.$store.commit('addTodaysMeals', {
+                'date': lastDate,
+                'meals': this.todaysMeals,
+            });
+
+            this.$store.commit('clearTodaysMeals');
+
             this.$store.commit('updateDate', checkDate);
         } 
         
-        this.todaysMeals = this.$store.getters.todaysMeals;
-        this.goals = this.$store.getters.goals;
         this.update();
     },
     mounted() {
