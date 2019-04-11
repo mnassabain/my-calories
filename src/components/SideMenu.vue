@@ -1,12 +1,45 @@
 <template>
     <div class="menu">
-        <font-awesome-icon id="bars" icon="arrow-left" @click="closeMenu"></font-awesome-icon>
+        
+        <font-awesome-icon id="bars" icon="arrow-left" @click="closeMenu"/>
+        
         <ul>
-            <li><router-link to="/createMeal" class="menu-link" @click.native="closeMenu">Create meal</router-link></li>
-            <li><router-link to="/myMeals" class="menu-link" @click.native="closeMenu">Meal list</router-link></li>
-            <li><router-link to="/weighIn" class="menu-link" @click.native="closeMenu">Enter weight</router-link></li>
-            <li><router-link to="/weightHistory" class="menu-link" @click.native="closeMenu">Track weight</router-link></li>
-            <li><router-link to="/modifyGoals" class="menu-link" @click.native="closeMenu">Modify goals</router-link></li>
+
+            <li>
+                <router-link to="/createMeal" class="menu-link" 
+                    @click.native="closeMenu">
+                        Create meal
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to="/myMeals" class="menu-link" 
+                    @click.native="closeMenu">
+                        Meal list
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to="/weighIn" class="menu-link" 
+                    @click.native="closeMenu">
+                        Enter weight
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to="/weightHistory" class="menu-link" 
+                    @click.native="closeMenu">
+                        Track weight
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to="/modifyGoals" class="menu-link" 
+                    @click.native="closeMenu">
+                        Modify goals
+                </router-link>
+            </li>
+
         </ul>
     </div>
 </template>
