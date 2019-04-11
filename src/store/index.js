@@ -67,7 +67,7 @@ export default new Vuex.Store({
     getters: {
         todaysMeals: state => state.todaysMeals,
         myMeals: state => state.myMeals,
-        weightHistory: state => state.weightHistory,
+        weightHistory: state => state.weightHistory.slice().reverse(),
         goals: state => state.goals,
         mealHistory: state => state.mealHistory.slice().reverse(),
         date: state => state.date,
