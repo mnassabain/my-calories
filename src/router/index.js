@@ -10,6 +10,7 @@ import AddMeal from '../views/AddMeal.vue'
 import WeighIn from '../views/WeighIn.vue'
 import WeightHistory from '../views/WeightHistory.vue'
 import ModifyGoals from '../views/ModifyGoals.vue'
+import MyMeals from '../views/MyMeals.vue'
 
 /* define routes */
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
   {'path': '/weighIn', component: WeighIn, name: 'weighIn'},
   {'path': '/weightHistory', component: WeightHistory, name: 'weightHistory'},
   {'path': '/modifyGoals', component: ModifyGoals, name: 'modifyGoals'},
+  {'path': '/myMeals', component: MyMeals, name: 'myMeals'},
 ]
 
 /* create router */
