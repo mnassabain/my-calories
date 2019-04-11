@@ -146,12 +146,16 @@ export default {
         var checkDate = new moment();
 
         if (checkDate.dayOfYear() != moment(lastDate).dayOfYear()) {
-            this.$store.commit('addTodaysMeals', {
-                'date': lastDate,
-                'meals': this.todaysMeals,
-            });
 
-            this.$store.commit('clearTodaysMeals');
+            if (this.todaysMeals.length != 0)
+            {
+                this.$store.commit('addTodaysMeals', {
+                    'date': lastDate,
+                    'meals': this.todaysMeals,
+                });
+
+                this.$store.commit('clearTodaysMeals');
+            }
 
             this.$store.commit('updateDate', checkDate);
         } 
