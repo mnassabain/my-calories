@@ -2,8 +2,8 @@
     <div class="container">
         <h2>Meal History</h2>
 
-        <div class="meal" v-for="(entry, entryIndex) in mealHistory" :key="entry.id"
-            @click="viewDay(entryIndex)">
+        <div class="meal" v-for="(entry, entryIndex) in mealHistory" 
+            :key="entry.id" @click="viewDay(entryIndex)">
             <h4>{{formatDate(entry.date)}}</h4>
             <span>
                 {{entry.macros.carbs}}g-

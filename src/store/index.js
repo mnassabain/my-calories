@@ -69,7 +69,7 @@ export default new Vuex.Store({
         myMeals: state => state.myMeals,
         weightHistory: state => state.weightHistory,
         goals: state => state.goals,
-        mealHistory: state => state.mealHistory,
+        mealHistory: state => state.mealHistory.slice().reverse(),
         date: state => state.date,
     },
     plugins: [vuexPersist.plugin],
