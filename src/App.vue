@@ -6,11 +6,11 @@
                 id="bars" class="nav-button" icon="bars" @click="showMenu">
             </font-awesome-icon>
             
-            <router-link to="/" v-else>
-                <font-awesome-icon id="arrow" class="nav-button" 
-                    icon="arrow-left">
-                </font-awesome-icon>
-            </router-link>
+            <!-- <router-link to="/" v-else> -->
+            <font-awesome-icon v-else id="arrow" class="nav-button" 
+                icon="arrow-left" @click="$router.go(-1)">
+            </font-awesome-icon>
+            <!-- </router-link> -->
 
             <h1>MyCalories</h1>
         </div>
