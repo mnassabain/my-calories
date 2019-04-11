@@ -2,7 +2,8 @@
     <div class="container">
         <h2>Meal History</h2>
 
-        <div class="meal" v-for="entry in mealHistory" :key="entry.id">
+        <div class="meal" v-for="(entry, entryIndex) in mealHistory" :key="entry.id"
+            @click="viewDay(entryIndex)">
             <h4>{{formatDate(entry.date)}}</h4>
             <span>
                 {{entry.macros.carbs}}g-
@@ -37,6 +38,9 @@ export default {
         formatDate(date) {
             var d = new moment(date);
             return d.format('MMMM Do, YYYY');
+        },
+        viewDay(index) {
+            this.$router.push('/mealHistory/' + index);
         }
     },
     beforeMount() {
