@@ -2,6 +2,7 @@
     <div class="container">
         <h2>Weight History</h2>
 
+        <!-- BUG: Page needs to be refreshed to display proper graph -->
         <apexchart width="300" height="400" type="line" :options="options" 
             :series="series">
         </apexchart>
@@ -72,11 +73,13 @@ export default {
     },
     methods: {
         removeEntry(entryIndex) {
-            this.$store.commit('removeWeightEntry', entryIndex);
+            var index = this.weightHistory.length - entryIndex - 1;
+            this.$store.commit('removeWeightEntry', index);
             this.weightHistory = this.$store.getters.weightHistory;
+            this.series[0].data.splice(entryIndex, 1); 
         },
         getDateString(date) {
-            return moment(date).format('MMMM Do YYYY');
+            return moment(date).format('MMMM Do, YYYY');
         }
     }
 }
