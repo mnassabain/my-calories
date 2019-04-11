@@ -13,7 +13,8 @@
             </span>
 
             <div v-if="clicked == mealIndex" class="portion-size">
-                <input type="number" v-model="portionSize" min="0" step="0.5"/>
+                <input type="number" v-model="portionSize" min="0" step="0.5" 
+                    @click.stop/>
                 <button id="add-button" @click="addMeal(meal)">Add</button>
             </div>
             
