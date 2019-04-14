@@ -4,9 +4,9 @@
 
         <div class="date">
             <h3>{{getCurrentDate()}}</h3>
-            <span>{{lastDate}}</span>
+            <span>{{checkDate.dayOfYear()}}</span>
             <br>
-            <span>{{checkDate.format()}}</span>
+            <span>{{moment(lastDate).dayOfYear()}}</span>
         </div>
 
         <div class="overall-calories">
