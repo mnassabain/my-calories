@@ -1,9 +1,9 @@
 <template>
     <div class="menu">
         
-        <font-awesome-icon id="bars" icon="arrow-left" @click="closeMenu"/>
-        
         <ul>
+
+            <li class="delimiter"><hr></li>
 
             <li>
                 <router-link to="/createMeal" class="menu-link" 
@@ -20,6 +20,15 @@
             </li>
 
             <li>
+                <router-link to="/mealHistory" class="menu-link" 
+                    @click.native="closeMenu">
+                        Meal History
+                </router-link>
+            </li>
+
+            <li class="delimiter"><hr></li>
+
+            <li>
                 <router-link to="/weighIn" class="menu-link" 
                     @click.native="closeMenu">
                         Enter weight
@@ -33,12 +42,7 @@
                 </router-link>
             </li>
 
-            <li>
-                <router-link to="/mealHistory" class="menu-link" 
-                    @click.native="closeMenu">
-                        Meal History
-                </router-link>
-            </li>
+            <li class="delimiter"><hr></li>
 
             <li>
                 <router-link to="/modifyGoals" class="menu-link" 
@@ -67,14 +71,16 @@ export default {
 <style>
 .menu
 {
+    margin-top: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-image: linear-gradient(to top right, #134E5E, #71B280);
+    /* background-image: linear-gradient(to top right, #134E5E, #71B280); */
+    background-color: #0F7084;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 5;
-    width: 45%;
+    right: 0;
+    z-index: 2;
     padding: 20px 20px;
 }
 
@@ -82,6 +88,10 @@ export default {
 {
     margin-top: 20px;
     list-style-type: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .menu h2
@@ -101,6 +111,11 @@ export default {
     color: white;
     font-size: 1.1em;
     margin-bottom: 15px;
+}
+
+.menu ul li.delimiter
+{
+    width: 90%;
 }
 
 .menu .menu-link

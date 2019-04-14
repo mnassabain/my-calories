@@ -2,15 +2,14 @@
     <div id="app">
 
         <div class="header">
-            <font-awesome-icon v-if="$route.name == 'home' && !menuVisible" 
-                id="bars" class="nav-button" icon="bars" @click="showMenu">
+            <font-awesome-icon v-if="$route.name == 'home'" 
+                id="bars" class="nav-button" icon="bars" @click="toggleMenu">
             </font-awesome-icon>
             
-            <!-- <router-link to="/" v-else> -->
+            
             <font-awesome-icon v-else id="arrow" class="nav-button" 
                 icon="arrow-left" @click="$router.go(-1)">
-            </font-awesome-icon>
-            <!-- </router-link> -->
+            </font-awesome-icon> 
 
             <h1>MyCalories</h1>
         </div>
@@ -19,7 +18,9 @@
             <router-view></router-view>
         </div>
 
-    <side-menu v-if="menuVisible" @closeMenu="hideMenu"></side-menu>
+    <transition name="slide-down">
+        <side-menu v-if="menuVisible" @closeMenu="toggleMenu"></side-menu>
+    </transition>
 
     </div>
 </template>
@@ -40,12 +41,8 @@ export default {
     },
 
     methods: {
-        showMenu: function() {
-            this.menuVisible = true;
-        },
-        
-        hideMenu: function() {
-            this.menuVisible = false;
+        toggleMenu() {
+            this.menuVisible = !this.menuVisible;
         }
     },
 }
@@ -67,6 +64,7 @@ export default {
 
     margin: 0;
     padding: 0;
+    padding-bottom: 70px;
 
     box-sizing: border-box;
 }
@@ -82,8 +80,9 @@ export default {
     margin-bottom: 15px;
     padding: 20px 20px;
     grid-area: header;
-    background-image: linear-gradient(to top right, #134E5E, #71B280);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-image: linear-gradient(to top right, #134E5E, #71B280); */
+    background-color: #0B5563;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 
     position: fixed;
     top:0;
@@ -111,7 +110,19 @@ export default {
 {
     margin: 0;
     padding: 0px 25px;
-    margin-top: 85px;
+    padding-top: 100px;
+    /* margin-top: 85px; */
+}
+
+/* transitions */
+.slide-down-enter, .slide-down-leave-to 
+{
+    transform: translateY(-100%);
+}
+
+.slide-down-enter-active, .slide-down-leave-active 
+{
+    transition: transform .45s ease;
 }
 
 </style>

@@ -1,40 +1,40 @@
 <template>
-    <div class="container">
-        <h2>Modify goals</h2>
+    <div class="modifygoals-container">
+        <section-title message="Modify goals"/>
 
         <div class="fields">
-            <number-input :min="0" size="small" placeholder="Carbs" inline 
-                center class="nb-input" v-model="carbs" @change="update">
-            </number-input>
-            
-            <number-input :min="0" size="small" placeholder="Protein" inline 
-                center class="nb-input" v-model="protein" @change="update">
-            </number-input>
-            
-            <number-input :min="0" size="small" placeholder="Fats" inline 
-                center class="nb-input" v-model="fats" @change="update">
-            </number-input>
-        </div>
 
-        <div class="result">
-            <number-input readonly inline center size="small" 
-                v-model="calories">
-            </number-input>
+            <span>Carbs</span>
+            <input type="number" min="0" step="1" class="nb-input"
+                v-model="carbs" @change="update">
+
+            <span>Protein</span>
+            <input type="number" min="0" step="1" class="nb-input"
+                v-model="protein" @change="update">
+            
+            <span>Fats</span>
+            <input type="number" min="0" step="1" class="nb-input"
+                v-model="fats" @change="update">
+            
+            <span>Calories</span>
+            <input type="number" min="0" step="1" class="nb-input rdonly" 
+                readonly v-model="calories">
 
             <button id="update-goals" @click="updateGoals">
                 Update
             </button>
         </div>
+
     </div>
 </template>
 
 <script>
-import VueNumberInput from '@chenfengyuan/vue-number-input';
+import SectionTitle from '@/components/SectionTitle';
 
 export default {
     name: 'modifyGoals',
     components: {
-        'number-input': VueNumberInput,
+        'section-title': SectionTitle,
     },
     data: function() {
         return {
@@ -46,6 +46,9 @@ export default {
     },
     methods: {
         update() {
+            this.carbs = parseInt(this.carbs);
+            this.protein = parseInt(this.protein);
+            this.fats = parseInt(this.fats);
             this.calories = this.carbs*4 + this.protein*4 + this.fats*9;
         },
         updateGoals() {
@@ -60,25 +63,39 @@ export default {
             });
 
             this.$router.push('/');
-        }
+        },
     }
 }
 </script>
 
 <style>
-.container .fields
+.modifygoals-container .fields
 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.container .fields .nb-input
+.modifygoals-container .fields .nb-input
 {
     margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.1em;
+    width: 30%;
+    margin: 10px;
+    margin-bottom: 15px;
+    padding: 0.2em 0.4em;
 }
 
-.container .result
+.modifygoals-container .fields .rdonly
+{
+    font-size: 1.1em;
+    padding: 0.5em 0.7em;
+    border: none;
+    background-color: #eeeeee;
+}
+
+.modifygoals-container .result
 {
     display: flex;
     flex-direction: column;
@@ -86,13 +103,17 @@ export default {
     margin-top: 30px;
 }
 
-.container .result #update-goals
+.modifygoals-container .fields #update-goals
 {
-    margin-top: 50px;
+    margin-top: 25px;
 
     border: none;
-    background-image: linear-gradient(to top right, #134E5E, #71B280);
+    background: #0D687A;
     color: white;
+
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     
     padding: 10px 20px;
     font-weight: bold;

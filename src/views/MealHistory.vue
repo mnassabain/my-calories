@@ -1,30 +1,35 @@
 <template>
-    <div class="container">
-        <h2>Meal History</h2>
+    <div class="mealhistory-container">
+        <section-title message="Meal history"/>
 
-        <div class="meal" v-for="(entry, entryIndex) in mealHistory" 
+        <div class="day" v-for="(entry, entryIndex) in mealHistory" 
             :key="entry.id" @click="viewDay(entryIndex)">
+            
             <h4>{{formatDate(entry.date)}}</h4>
             <span>
-                {{entry.macros.carbs}}g-
-                {{entry.macros.protein}}g-
+                {{entry.macros.carbs}}g
+                {{entry.macros.protein}}g
                 {{entry.macros.fats}}g 
                 
                 <strong>{{entry.macros.calories}}kcal</strong>
             </span>
-            <br>
+
         </div>
 
-        <button @click="clearMealHistory">Clear</button>
+        <!-- <button @click="clearMealHistory">Clear</button> -->
         
     </div>
 </template>
 
 <script>
 import moment from 'moment';
+import SectionTitle from '../components/SectionTitle';
 
 export default {
     name: 'mealHistory',
+    components: {
+        'section-title': SectionTitle,
+    },
     data: function() {
         return {
             mealHistory: [],
@@ -50,5 +55,19 @@ export default {
 </script>
 
 <style>
+.mealhistory-container .day
+{
+    background-color: #E0FFF9;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.mealhistory-container .day h4
+{
+    margin: 0;
+    padding: 0;
+}
 </style>

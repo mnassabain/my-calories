@@ -1,15 +1,17 @@
 <template>
-    <div class="container">
-        <h2>Weight History</h2>
+    <div class="weighthistory-container">
+
+        <section-title message="Weight history"/>
 
         <!-- BUG: Page needs to be refreshed to display proper graph -->
-        <apexchart width="300" height="400" type="line" :options="options" 
-            :series="series">
+        <apexchart width="275" height="300" type="line" :options="options" 
+            :series="series" class="chart">
         </apexchart>
 
         <div class="history">
-            <h3>Previous entries</h3>
-            <hr>
+            
+            <section-title message="Previous entries"/>
+
             <div class="weight-entry" 
                 v-for="(entry, entryIndex) in weightHistory" 
                 :key="entry.id">
@@ -33,17 +35,22 @@
 <script>
 import VueApexCharts from 'vue-apexcharts';
 import moment from 'moment';
+import SectionTitle from '@/components/SectionTitle';
 
 export default {
     name: 'weightHistory',
     components: {
         'apexchart': VueApexCharts,
+        'section-title': SectionTitle,
     },
     data: function() {
         return {
             options: {
                 chart: {
-                    id: 'vuechart-example'
+                    id: 'vuechart-example',
+                    toolbar: {
+                        show: false,
+                    },
                 },
                 xaxis: {
                     type: "datetime",
@@ -53,6 +60,12 @@ export default {
                     forceNiceScale: true,
                     tickAmount: 1,
                 },
+                grid:
+                {   
+                    padding: {top: 0, bottom: 0, right: 0, left: 0},
+                    margin: {top: 0, bottom: 0, right: 0, left: 0},
+                },
+                colors: ['#0D687A'],
             },
             series: [{
                 name: 'Weight',
@@ -86,14 +99,14 @@ export default {
 </script>
 
 <style>
-.history hr
+.weighthistory-container .history hr
 {
     margin-bottom: 10px;
 }
 
-.weight-entry
+.weighthistory-container .weight-entry
 {
-    background-image: linear-gradient(to top right, #c6f2d8, #ffffff);
+    background-color: #E0FFF9;
     padding: 10px 20px;
     margin-bottom: 10px;
     display: flex;
@@ -102,13 +115,13 @@ export default {
     align-items: center;
 }
 
-.weight-entry h4
+.weighthistory-container .weight-entry h4
 {
     margin: 0;
     padding: 0;
 }
 
-.weight-entry .delete-button
+.weighthistory-container .weight-entry .delete-button
 {
     font-size: 1.2em;
 }

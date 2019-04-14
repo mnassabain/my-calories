@@ -12,57 +12,38 @@
             <h3>{{goals.calories}} kcal</h3>
         </div>
 
-        <div class="pie-chart">
-            <apexchart width="200" type="pie" :options="options" 
-                :series="series" id="chart">
-            </apexchart>
-        </div>
-
+        <pie-chart :series="series" class="pie-chart"/>
         
         <div class="macros">
 
             <div class="macro">
                 <font-awesome-icon icon="bread-slice"/>
-                <span>{{current.carbs}}g/{{goals.carbs}}g</span>
+                <span><span class="current">{{current.carbs}}g</span>/{{goals.carbs}}g</span>
             </div>
 
             <div class="macro">
                 <font-awesome-icon icon="drumstick-bite"/>
-                <span>{{current.protein}}g/{{goals.protein}}g</span>
+                <span><span class="current">{{current.protein}}g</span>/{{goals.protein}}g</span>
             </div>
             
             <div class="macro">
                 <font-awesome-icon icon="fish"/>
-                <span>{{current.fats}}g/{{goals.fats}}g</span>
+                <span><span class="current">{{current.fats}}g</span>/{{goals.fats}}g</span>
             </div>
 
         </div>
 
 
         <div class="meals">
-            <h3>Todays meals</h3>
-            <hr>
+            <section-title message="Todays meals"/>
 
-            <div class="meal" v-for="(meal, mealIndex) 
-                in $store.getters.todaysMeals" :key="meal.id">
-                <div class="info">
-                    <h4>{{meal.name}}</h4>
-                    <span>
-                        {{meal.carbs * meal.portionSize}}g-
-                        {{meal.protein * meal.portionSize}}g-
-                        {{meal.fats * meal.portionSize}}g 
-                        <strong>
-                            {{meal.calories * meal.portionSize}}kcal
-                        </strong>
-                    </span>
-                </div>
-                <font-awesome-icon icon="trash-alt" class="delete-button" 
-                    @click="removeMeal(mealIndex)"/>
-            </div>
+            <meal v-for="(meal, mealIndex) in todaysMeals" :key="meal.id"
+                :info="meal" :index="mealIndex" @removedMeal="update">
+            </meal>
 
         </div>
 
-        <router-link to="/addMeal" id="add-meal" v-on:click="addMeal()">
+        <router-link to="/addMeal" id="add-meal">
             <font-awesome-icon icon="plus"/>
         </router-link>
 
@@ -72,36 +53,23 @@
 
 
 <script>
-import VueApexCharts from 'vue-apexcharts';
 import moment from 'moment';
+import Meal from '../components/Meal.vue';
+import SectionTitle from '../components/SectionTitle.vue';
+import PieChart from '../components/PieChart.vue';
 
 export default {
     name: 'home',
     components: {
-        'apexchart': VueApexCharts,
+        'meal': Meal,
+        'section-title': SectionTitle,
+        'pie-chart': PieChart,
     },
 
     data: function() {
         return {
-            /* pie chart */
-            options: {
-                dataLabels: {
-                    enabled: false
-                },
-                legend: {
-                    show: false
-                },
-                grid:
-                {   
-                    padding: {top: 0, bottom: 0, right: 0, left: 0},
-                    margin: {top: 0, bottom: 0, right: 0, left: 0},
-                },
-                colors: [ '#c4f1be', '#76f7bf', '#35524a',],
-                labels: ["Carbohydrates", "Protein", "Fat"],
-            },
             series: [],
 
-            /* other */
             goals: {},
 
             current: {
@@ -111,12 +79,15 @@ export default {
                 calories: 0,
             },
 
-            /* meals */
             todaysMeals: null,
         }
     },
     methods: {
         update() {
+            /* set everything to 0 */
+            this.current.calories = this.current.carbs = this.current.protein = 
+                this.current.fats = 0;
+
             /* get values */
             this.todaysMeals.forEach(element => {
                 this.current.carbs += element.carbs * element.portionSize;                
@@ -124,16 +95,11 @@ export default {
                 this.current.fats += element.fats * element.portionSize;
                 this.current.calories += element.calories * element.portionSize;
             });
-        },
-        removeMeal(mealIndex) {
-            this.$store.commit('removeTodaysMeal', mealIndex);
-            this.current.calories = this.current.carbs = this.current.protein = 
-                this.current.fats = 0;
-            this.update();
 
+            /* update graph */
             this.series = [
-                this.current.carbs*4, this.current.protein*4, 
-                this.current.fats*9
+                this.current.protein*4, this.current.fats*9, 
+                this.current.carbs*4,
             ];
         },
         getCurrentDate() {
@@ -148,12 +114,11 @@ export default {
         
         /* check if today is a new day */
         var lastDate = this.$store.getters.date;
-
         var checkDate = new moment();
 
         if (checkDate.dayOfYear() != moment(lastDate).dayOfYear()) {
 
-            if (this.todaysMeals.length != 0)
+            if (this.todaysMeals.length != 0) 
             {
                 this.$store.commit('addTodaysMeals', {
                     'date': lastDate,
@@ -179,7 +144,7 @@ export default {
     },
     mounted() {
         this.series = [
-            this.current.carbs*4, this.current.protein*4, this.current.fats*9
+            this.current.protein*4, this.current.fats*9, this.current.carbs*4,  
         ];
     }
 }
@@ -187,18 +152,25 @@ export default {
 
 
 <style scoped>
+.container *
+{
+    z-index: 1;
+}
+
+
 .overall-calories
 {
     grid-area: overall-calories;
     margin: 0;
     justify-self: end;
     text-align: right;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .overall-calories h2
 {
-    margin: 5px 0;
+    margin: 0;
+    /* margin: 5px 0; */
     padding: 0;
 }
 
@@ -244,6 +216,17 @@ export default {
 .macro span
 {
     line-height: 1.5em;
+    font-size: 0.9em;
+    padding: 0;
+    margin: 0;
+}
+
+.macro span .current
+{
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 .macro
@@ -262,43 +245,11 @@ export default {
     justify-self: center;
 }
 
-.meals h3
-{
-    margin: 5px 0;
-    padding: 0;
-}
-
-.meals hr
-{
-    margin-bottom: 15px;
-}
-
-.meal
-{
-    background-image: linear-gradient(to top right, #c6f2d8, #ffffff);
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.meal h4
-{
-    margin: 0;
-    padding: 0;
-}
-
-.meal .delete-button
-{
-    font-size: 1.2em;
-}
-
 .date
 {
     grid-area: date;
-    margin: 15px 0;
+    margin: 0;
+    /* margin: 15px 0; */
     padding: 0;
 }
 
@@ -325,7 +276,8 @@ export default {
     bottom: 30px;
     right: 30px;
     font-size: 1.5em;
-    background-image: linear-gradient(to top right, #134E5E, #71B280);
+    background-color: #0D687A;
+    /* background-image: linear-gradient(to top right, #134E5E, #71B280); */
 }
 
 .container
@@ -340,6 +292,17 @@ export default {
         'date overall-calories overall-calories'
         'pie-chart macros macros'
         'meals meals meals';
+}
+
+/* transtions */
+.slide-down-enter, .slide-down-leave-to 
+{
+    transform: translateX(100%);
+}
+
+.slide-down-enter-active, .slide-down-leave-active 
+{
+    transition: transform .45s ease;
 }
 
 </style>

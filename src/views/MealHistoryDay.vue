@@ -1,6 +1,8 @@
 <template>
-    <div class="container">
-        <h2>{{formatDate(history.date)}} log</h2>
+    <div class="mealhistoryday-container">
+        <!-- <h2>{{formatDate(history.date)}} log</h2> -->
+
+        <section-title :message="formatDate(history.date)"/>
 
         <div class="macro-info">
             <div class="macro">
@@ -25,8 +27,9 @@
         </div>
 
         <div class="meals">
-            <h3>Meal list</h3>
-            <hr id="meal-list">
+            
+            <section-title message="Meals"/>
+
             <div class="meal" v-for="meal in history.meals" :key="meal.id">
                 <div class="info">
                     <h4>{{meal.name}}</h4>
@@ -46,12 +49,16 @@
 
 <script>
 import moment from 'moment';
+import SectionTitle from '../components/SectionTitle';
 
 export default {
     name: 'MealHistoryDay',
+    components: {
+        'section-title': SectionTitle,
+    },
     data: function() {
         return {
-            history: {}
+            history: {},
         }
     },
     methods: {
@@ -92,4 +99,20 @@ export default {
     margin-bottom: 15px;
 }
 
+.mealhistoryday-container .meals .meal
+{
+    background-color: #E0FFF9;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-container .info h4
+{
+    margin: 0;
+    padding: 0;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
+    <div class="mymeals-container">
 
-        <h2>My Meals</h2>
+        <section-title message="My meals"/>
 
         <div class="my-meal" v-for="(meal, mealIndex) in $store.getters.myMeals" 
             :key="meal.id">
@@ -26,8 +26,13 @@
 </template>
 
 <script>
+import SectionTitle from '../components/SectionTitle';
+
 export default {
     name: 'MyMeals',
+    components: {
+        'section-title': SectionTitle,
+    },
     methods: {
         removeMeal(mealIndex) {
             this.$store.commit('removeMeal', mealIndex);
@@ -37,21 +42,30 @@ export default {
 </script>
 
 <style>
-.container .my-meal
+.mymeals-container .my-meal
 {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    background-image: linear-gradient(to top right, #c6f2d8, #ffffff);
+    background-color: #E0FFF9;
     padding: 10px 20px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.container .meal h4
+.mymeals-container .meal h4
 {
     margin: 0;
     padding: 0;
+}
+
+.mymeals-container .meal #delete-button
+{
+    font-size: 1.2em;
 }
 </style>

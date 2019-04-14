@@ -1,38 +1,41 @@
 <template>
     <div class="container">
 
-        <h2>New meal</h2>
+        <section-title message="New meal"/>
 
         <form>
+
+            <span>Enter meal name</span>
             <div class="form-entry">
-                <input type="text" placeholder="Name" v-model="mealName" 
-                    v-bind:class="{redline: missingName}">
+                <input type="text" v-model="mealName" 
+                    v-bind:class="{redline: missingName}" placeholder="Name">
             </div>
 
             <div class="macros">
 
-                <number-input :min="0" size="small" placeholder="Carbs" 
-                    inline center controls class="nb-input" v-model="carbs" 
-                    @change="update">
-                </number-input>
+                <div class="macro">
+                    <span>Carbs</span>
+                    <input type="number" min="0" placeholder="Carbs" 
+                        class="nb-input" v-model="carbs" @change="update">
+                </div>            
 
-                <number-input :min="0" size="small" placeholder="Protein" 
-                    inline center controls class="nb-input" v-model="protein" 
-                    @change="update">
-                </number-input>
-                
-                <number-input :min="0" size="small" placeholder="Fats" 
-                    inline center controls class="nb-input" v-model="fats" 
-                    @change="update">
-                </number-input>
+                <div class="macro">
+                    <span>Protein</span>
+                    <input type="number" min="0" placeholder="Protein" 
+                    class="nb-input" v-model="protein" @change="update">
+                </div>
 
-                <br><br>
+                <div class="macro">
+                    <span>Fats</span>
+                    <input type="number" min="0" placeholder="Fats" 
+                        class="nb-input" v-model="fats" @change="update">
+                </div>
 
-                <number-input size="small" placeholder="calories" 
-                    :value="calories" inline center readonly>
-                </number-input>
-                
             </div>
+
+            <span>Calories</span>
+            <input type="number" min="0" placeholder="Calories" 
+                class="show-kcals" v-model="calories" readonly>
 
             <button type="button" id="create-button" @click="create">
                 Create
@@ -43,12 +46,12 @@
 </template>
 
 <script>
-import VueNumberInput from '@chenfengyuan/vue-number-input';
+import SectionTitle from '@/components/SectionTitle';
 
 export default {
     name: 'createmeal',
     components: {
-        'number-input': VueNumberInput,
+        'section-title': SectionTitle,
     },
     data: function() {
         return {
@@ -62,6 +65,9 @@ export default {
     },
     methods: {
         update() {
+            this.carbs = parseInt(this.carbs);
+            this.protein = parseInt(this.protein);
+            this.fats = parseInt(this.fats);
             this.calories = this.carbs * 4 + this.protein * 4 + this.fats * 9; 
         },
 
@@ -118,22 +124,25 @@ form
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-
-    width: 100%;
+    /* width: 100%; */
     /* background-color: #efefefef; */
-    border: none;
-    font-size: 1em;
+    font-size: 1.1em;
     padding: 7px 10px;
-    border-bottom: 3px solid #134E5E;
     transition: border-bottom 0.2s ease;
-}
-
-.form-entry input:focus
-{
-    border-bottom :3px solid #71B280;
+    background-color: #ffffff;
+    padding: 0.3em 0.5em;
+    text-align: center;
 }
 
 form .macros
+{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+form .macros .macro
 {
     display: flex;
     flex-direction: column;
@@ -142,7 +151,25 @@ form .macros
 
 form .macros .nb-input
 {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    padding: 0.3em 0.5em;
+    text-align: center;
+    width: 40%;
+}
+
+.show-kcals
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    padding: 0.3em 0.5em;
+    text-align: center;
+    width: 40%;
+
+    border: none;
+    background-color: #eeeeee;
 }
 
 #create-button
@@ -150,17 +177,22 @@ form .macros .nb-input
     margin-top: 30px;
 
     border: none;
-    background-image: linear-gradient(to top right, #134E5E, #71B280);
     color: white;
     
-    padding: 15px 40px;
+    padding: 10px 25px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
+
+    background-color: #0D687A;
+
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .redline
 {
-    border-bottom: 3px solid #a23d3d !important;
+    border: 1px solid #c92c2c !important;
 }
 
 

@@ -22,5 +22,6 @@ export default {
 .section-title-container hr
 {
     margin-bottom: 15px;
+    border: 1px solid #2c3e50;
 }
 </style>
