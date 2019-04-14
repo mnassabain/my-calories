@@ -123,7 +123,7 @@ export default {
         // var lastDate = this.$store.getters.date;
         this.checkDate = new moment();
 
-        if (this.checkDate.dayOfYear() != this.lastDate) {
+        if (this.checkDate.dayOfYear() != this.lastDate.dayOfYear()) {
 
             if (this.todaysMeals.length != 0) 
             {
