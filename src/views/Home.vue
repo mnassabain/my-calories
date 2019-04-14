@@ -119,9 +119,9 @@ export default {
         this.update();
         
         /* check if today is a new day */
-        lastDate = '2019-04-15T01:04:14+02:00';
+        this.lastDate = '2019-04-15T01:04:14+02:00';
         // var lastDate = this.$store.getters.date;
-        checkDate = new moment();
+        this.checkDate = new moment();
 
         if (checkDate.dayOfYear() != moment(lastDate).dayOfYear()) {
 
