@@ -123,12 +123,12 @@ export default {
         // var lastDate = this.$store.getters.date;
         this.checkDate = new moment();
 
-        if (checkDate.dayOfYear() != moment(lastDate).dayOfYear()) {
+        if (this.checkDate.dayOfYear() != this.lastDate) {
 
             if (this.todaysMeals.length != 0) 
             {
                 this.$store.commit('addTodaysMeals', {
-                    'date': lastDate,
+                    'date': this.lastDate,
                     'meals': this.todaysMeals,
                     'macros': {
                         'carbs': this.current.carbs,
@@ -141,7 +141,7 @@ export default {
                 this.$store.commit('clearTodaysMeals');
             }
 
-            this.$store.commit('updateDate', checkDate);
+            this.$store.commit('updateDate', this.checkDate);
 
             this.todaysMeals = [];
             this.current.calories = this.current.carbs = this.current.protein = 
