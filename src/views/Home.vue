@@ -4,6 +4,9 @@
 
         <div class="date">
             <h3>{{getCurrentDate()}}</h3>
+            <span>{{lastDate}}</span>
+            <br>
+            <span>{{checkDate}}</span>
         </div>
 
         <div class="overall-calories">
@@ -80,6 +83,9 @@ export default {
             },
 
             todaysMeals: null,
+
+            lastDate: null,
+            checkDate: null,
         }
     },
     methods: {
@@ -113,9 +119,9 @@ export default {
         this.update();
         
         /* check if today is a new day */
-        var lastDate = '2019-04-15T01:04:14+02:00';
+        lastDate = '2019-04-15T01:04:14+02:00';
         // var lastDate = this.$store.getters.date;
-        var checkDate = new moment();
+        checkDate = new moment();
 
         if (checkDate.dayOfYear() != moment(lastDate).dayOfYear()) {
 
