@@ -189,6 +189,8 @@ export default {
 {
     margin: 0;
     padding: 0;
+    border: none;
+    border: 1px solid #32434d99;
 }
 
 .pie-chart
