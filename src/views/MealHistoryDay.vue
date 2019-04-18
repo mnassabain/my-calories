@@ -1,7 +1,5 @@
 <template>
     <div class="mealhistoryday-container">
-        <!-- <h2>{{formatDate(history.date)}} log</h2> -->
-
         <section-title :message="formatDate(history.date)"/>
 
         <div class="macro-info">

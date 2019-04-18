@@ -7,12 +7,8 @@
             
             <span>Enter new weight</span>
 
-            <input type="number" min="0" step="0.1" class="nb-input" v-model="weight">
-
-            <!-- <number-input :min="0" :step="0.1" size="small" 
-                placeholder="Weight(kg)" inline center class="nb-input" 
-                v-model="weight">
-            </number-input> -->
+            <input type="number" min="0" step="0.1" class="nb-input" 
+                v-model="weight" @change="updateWeight">
             
             <button id="add-weight" @click="addWeight">
                 Add weight
@@ -47,6 +43,9 @@ export default {
                 'weight': this.weight
             });
             this.$router.go(-1);
+        },
+        updateWeight() {
+            this.weight = parseFloat(this.weight);
         }
     }
 }

@@ -65,9 +65,9 @@ export default {
     },
     methods: {
         update() {
-            this.carbs = parseInt(this.carbs);
-            this.protein = parseInt(this.protein);
-            this.fats = parseInt(this.fats);
+            this.carbs = parseFloat(this.carbs);
+            this.protein = parseFloat(this.protein);
+            this.fats = parseFloat(this.fats);
             this.calories = this.carbs * 4 + this.protein * 4 + this.fats * 9; 
         },
 
