@@ -57,7 +57,7 @@ export default {
                 "portionSize" : this.portionSize,
             });
 
-            this.$router.push({name: 'home'});
+            this.$router.go(-1);
         },
         togglePortionSize(index) {
             if (this.clicked != index) {

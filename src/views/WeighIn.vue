@@ -46,7 +46,7 @@ export default {
                 'date': new moment(), 
                 'weight': this.weight
             });
-            this.$router.push('/');
+            this.$router.go(-1);
         }
     }
 }

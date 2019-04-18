@@ -62,7 +62,7 @@ export default {
                 'calories': this.calories,
             });
 
-            this.$router.push('/');
+            this.$router.go(-1);
         },
     }
 }
