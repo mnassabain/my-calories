@@ -39,7 +39,7 @@ export default {
                 return;
             }
             this.$store.commit('addWeight', {
-                'date': new moment(), 
+                'date': new moment().format(), 
                 'weight': this.weight
             });
             this.$router.go(-1);

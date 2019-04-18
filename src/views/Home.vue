@@ -124,7 +124,7 @@ export default {
             if (this.todaysMeals.length != 0) 
             {
                 this.$store.commit('addTodaysMeals', {
-                    'date': this.lastDate,
+                    'date': this.lastDate.format(),
                     'meals': this.todaysMeals,
                     'macros': {
                         'carbs': this.current.carbs,
@@ -137,7 +137,7 @@ export default {
                 this.$store.commit('clearTodaysMeals');
             }
 
-            this.$store.commit('updateDate', this.checkDate);
+            this.$store.commit('updateDate', this.checkDate.format());
 
             this.todaysMeals = [];
             this.current.calories = this.current.carbs = this.current.protein = 
