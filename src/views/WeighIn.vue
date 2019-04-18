@@ -23,14 +23,12 @@
 </template>
 
 <script>
-import VueNumberInput from '@chenfengyuan/vue-number-input';
 import moment from 'moment';
 import SectionTitle from '@/components/SectionTitle'
 
 export default {
     name: 'weighIn',    
     components: {
-        'number-input': VueNumberInput,
         'section-title': SectionTitle,
     },
     data: function() {
