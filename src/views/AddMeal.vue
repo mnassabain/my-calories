@@ -6,7 +6,12 @@
         
         <section-title message="My Meals"/>
 
-        <div class="meal" v-for="(meal, mealIndex) in $store.getters.myMeals" 
+        <p v-if="(myMeals.length == 0)">
+            You haven't created any meals yet!
+        </p>
+
+
+        <div class="meal" v-for="(meal, mealIndex) in myMeals" 
             :key="meal.id" @click="togglePortionSize(mealIndex)">
             
             <div class="info">
@@ -44,6 +49,8 @@ export default {
         return {
             portionSize: 1,
             clicked: -1,
+
+            myMeals: null,
         }
     },
     methods: {
@@ -67,6 +74,9 @@ export default {
                 this.clicked = -1;
             }
         }
+    },
+    beforeMount() {
+        this.myMeals = this.$store.getters.myMeals;
     }
 }
 </script>

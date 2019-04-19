@@ -37,6 +37,10 @@
         <div class="meals">
             <section-title message="Todays meals"/>
 
+            <p v-if="(todaysMeals.length == 0)"> <!-- if no meals today -->
+                Press the '+' button to add a meal.
+            </p>
+
             <meal v-for="(meal, mealIndex) in todaysMeals" :key="meal.id"
                 :info="meal" :index="mealIndex" @removedMeal="update">
             </meal>
@@ -142,8 +146,7 @@ export default {
             this.todaysMeals = [];
             this.current.calories = this.current.carbs = this.current.protein = 
                 this.current.fats = 0;
-        } 
-
+        }
     },
     mounted() {
         this.series = [
@@ -248,6 +251,12 @@ export default {
     grid-area: meals;
     width: 100%;
     justify-self: center;
+}
+
+.meals p
+{
+    width: 100%;
+    /* text-align: center; */
 }
 
 .date

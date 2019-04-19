@@ -2,6 +2,10 @@
     <div class="mealhistory-container">
         <section-title message="Meal history"/>
 
+        <p v-if="(mealHistory.length == 0)">
+            Every day at midnight we save your activity here.
+        </p>
+
         <div class="day" v-for="(entry, entryIndex) in mealHistory" 
             :key="entry.id" @click="viewDay(entryIndex)">
             
@@ -15,8 +19,6 @@
             </span>
 
         </div>
-
-        <!-- <button @click="clearMealHistory">Clear</button> -->
         
     </div>
 </template>

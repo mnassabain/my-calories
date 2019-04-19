@@ -3,7 +3,11 @@
 
         <section-title message="My meals"/>
 
-        <div class="my-meal" v-for="(meal, mealIndex) in $store.getters.myMeals" 
+        <p v-if="(myMeals.length == 0)">
+            You haven't created any meals yet!
+        </p>
+
+        <div class="my-meal" v-for="(meal, mealIndex) in myMeals" 
             :key="meal.id">
             
             <div class="info">
@@ -17,8 +21,8 @@
             </div>
 
             <font-awesome-icon icon="trash-alt" 
-                    class="delete-button" 
-                    @click="removeMeal(mealIndex)"/>
+                class="delete-button" 
+                @click="removeMeal(mealIndex)"/>
             
         </div>
 
@@ -33,10 +37,18 @@ export default {
     components: {
         'section-title': SectionTitle,
     },
+    data() {
+        return {
+            myMeals: null,
+        }
+    },
     methods: {
         removeMeal(mealIndex) {
             this.$store.commit('removeMeal', mealIndex);
         }
+    },
+    beforeMount() {
+        this.myMeals = this.$store.getters.myMeals;
     }
 }
 </script>

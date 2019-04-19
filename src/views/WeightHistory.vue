@@ -12,6 +12,10 @@
             
             <section-title message="Previous entries"/>
 
+            <p v-if="(weightHistory.length == 0)">
+                Enter your weight to track results.
+            </p>
+
             <div class="weight-entry" 
                 v-for="(entry, entryIndex) in weightHistory" 
                 :key="entry.id">
