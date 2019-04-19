@@ -119,8 +119,15 @@ export default {
         this.goals = this.$store.getters.goals;
         this.update();
         
+        /* check if the date is defined - if not, enter new date */
+        var storedDate = this.$store.getters.date;
+        if (storedDate == '') {
+            storedDate = new moment().format();
+            this.$store.commit('updateDate', storedDate)
+        }
+
         /* check if today is a new day */
-        this.lastDate = new moment(this.$store.getters.date);
+        this.lastDate = new moment(storedDate);
         this.checkDate = new moment();
 
         if (this.checkDate.dayOfYear() != this.lastDate.dayOfYear()) {

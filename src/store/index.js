@@ -13,7 +13,7 @@ const vuexPersist = new VuexPersist({
 /* vuex store */
 export default new Vuex.Store({
     state: {
-        date: undefined,
+        date: '',
         todaysMeals: [],
         myMeals: [],
         weightHistory: [],
