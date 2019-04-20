@@ -7,7 +7,7 @@
             You haven't created any meals yet!
         </p>
 
-        <div class="my-meal" v-for="(meal, mealIndex) in myMeals" 
+        <!-- <div class="my-meal" v-for="(meal, mealIndex) in myMeals" 
             :key="meal.id">
             
             <div class="info">
@@ -24,18 +24,23 @@
                 class="delete-button" 
                 @click="removeMeal(mealIndex)"/>
             
-        </div>
+        </div> -->
+
+        <my-meals :mealList="myMeals" @removedMeal="removeMeal"/>
+
 
     </div>
 </template>
 
 <script>
 import SectionTitle from '../components/SectionTitle';
+import MealList from '../components/MealList';
 
 export default {
     name: 'MyMeals',
     components: {
         'section-title': SectionTitle,
+        'my-meals': MealList,
     },
     data() {
         return {

@@ -30,6 +30,11 @@ export default {
             // this.$store.commit('removeTodaysMeal', index);
             this.$emit('removedMeal', index);
         }
+    },
+    beforeMount() {
+        if (this.info.portionSize == undefined) {
+            this.info.portionSize = 1;
+        }
     }
 }
 </script>

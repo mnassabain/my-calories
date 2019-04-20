@@ -1,32 +1,24 @@
 <template>
     <div class="meals">
-            
-        <section-title message="Todays meals"/>
-
-        <p v-if="(mealList.length == 0)">
-            Press the '+' button to add a meal.
-        </p>
 
         <meal v-for="(meal, mealIndex) in mealList" :key="meal.id"
-            :info="meal" :index="mealIndex" @removedMeal="update">
+            :info="meal" :index="mealIndex" @removedMeal="removeMeal">
         </meal>
 
     </div>
 </template>
 
 <script>
-import SectionTitle from './SectionTitle';
 import Meal from './Meal';
 
 export default {
     name: 'MealList',
     props: ['mealList'],
     components: {
-        'section-title': SectionTitle,
         'meal': Meal,
     },
     methods: {
-        update(index) {
+        removeMeal(index) {
             this.$emit('removedMeal', index);
         }
     }

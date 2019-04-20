@@ -33,7 +33,17 @@
 
         </div>
 
-        <todays-meals :mealList="todaysMeals" @removedMeal="removeMeal"/>
+        <div class="meals">
+
+            <section-title message="Todays meals"/>
+
+            <p v-if="(todaysMeals.length == 0)">
+                Press the '+' button to add a meal.
+            </p>
+    
+            <todays-meals :mealList="todaysMeals" @removedMeal="removeMeal"/>
+
+        </div>
 
         <router-link to="/addMeal" id="add-meal">
             <font-awesome-icon icon="plus"/>
@@ -46,10 +56,9 @@
 
 <script>
 import moment from 'moment';
-// import Meal from '../components/Meal.vue';
-// import SectionTitle from '../components/SectionTitle.vue';
 import PieChart from '../components/PieChart.vue';
 import MealList from '../components/MealList';
+import SectionTitle from '../components/SectionTitle';
 
 
 export default {
@@ -57,6 +66,7 @@ export default {
     components: {
         'pie-chart': PieChart,
         'todays-meals': MealList,
+        'section-title': SectionTitle,
     },
 
     data: function() {
