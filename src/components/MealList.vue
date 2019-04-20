@@ -19,15 +19,15 @@ import SectionTitle from './SectionTitle';
 import Meal from './Meal';
 
 export default {
-    name: 'TodaysMeals',
+    name: 'MealList',
     props: ['mealList'],
     components: {
         'section-title': SectionTitle,
         'meal': Meal,
     },
     methods: {
-        update() {
-            this.$emit('removedMeal');
+        update(index) {
+            this.$emit('removedMeal', index);
         }
     }
 }

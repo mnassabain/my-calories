@@ -33,7 +33,7 @@
 
         </div>
 
-        <todays-meals :mealList="todaysMeals" @removedMeal="update"/>
+        <todays-meals :mealList="todaysMeals" @removedMeal="removeMeal"/>
 
         <router-link to="/addMeal" id="add-meal">
             <font-awesome-icon icon="plus"/>
@@ -49,14 +49,14 @@ import moment from 'moment';
 // import Meal from '../components/Meal.vue';
 // import SectionTitle from '../components/SectionTitle.vue';
 import PieChart from '../components/PieChart.vue';
-import TodaysMeals from '../components/TodaysMeals';
+import MealList from '../components/MealList';
 
 
 export default {
     name: 'home',
     components: {
         'pie-chart': PieChart,
-        'todays-meals': TodaysMeals,
+        'todays-meals': MealList,
     },
 
     data: function() {
@@ -101,6 +101,10 @@ export default {
         getCurrentDate() {
             var date = moment(this.$store.getters.date);
             return date.format('MMMM Do, YYYY');
+        },
+        removeMeal(index) {
+            this.$store.commit('removeTodaysMeal', index);
+            this.update();
         }
     },
     beforeMount() {

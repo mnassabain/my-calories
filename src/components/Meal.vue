@@ -27,8 +27,8 @@ export default {
     ],
     methods: {
         removeMeal(index) {
-            this.$store.commit('removeTodaysMeal', index);
-            this.$emit('removedMeal');
+            // this.$store.commit('removeTodaysMeal', index);
+            this.$emit('removedMeal', index);
         }
     }
 }
