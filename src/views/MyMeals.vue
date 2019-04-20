@@ -7,27 +7,7 @@
             You haven't created any meals yet!
         </p>
 
-        <!-- <div class="my-meal" v-for="(meal, mealIndex) in myMeals" 
-            :key="meal.id">
-            
-            <div class="info">
-
-                <h4>{{meal.name}}</h4>
-                
-                <span>{{meal.carbs}}g-{{meal.protein}}g-{{meal.fats}}g 
-                    <strong>{{meal.calories}}kcal</strong>
-                </span>
-
-            </div>
-
-            <font-awesome-icon icon="trash-alt" 
-                class="delete-button" 
-                @click="removeMeal(mealIndex)"/>
-            
-        </div> -->
-
         <my-meals :mealList="myMeals" @removedMeal="removeMeal"/>
-
 
     </div>
 </template>
@@ -59,22 +39,6 @@ export default {
 </script>
 
 <style>
-.mymeals-container .my-meal
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    background-color: #E0FFF9;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .mymeals-container .meal h4
 {
     margin: 0;
