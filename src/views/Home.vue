@@ -33,19 +33,7 @@
 
         </div>
 
-
-        <div class="meals">
-            <section-title message="Todays meals"/>
-
-            <p v-if="(todaysMeals.length == 0)"> <!-- if no meals today -->
-                Press the '+' button to add a meal.
-            </p>
-
-            <meal v-for="(meal, mealIndex) in todaysMeals" :key="meal.id"
-                :info="meal" :index="mealIndex" @removedMeal="update">
-            </meal>
-
-        </div>
+        <todays-meals :mealList="todaysMeals" @removedMeal="update"/>
 
         <router-link to="/addMeal" id="add-meal">
             <font-awesome-icon icon="plus"/>
@@ -58,16 +46,17 @@
 
 <script>
 import moment from 'moment';
-import Meal from '../components/Meal.vue';
-import SectionTitle from '../components/SectionTitle.vue';
+// import Meal from '../components/Meal.vue';
+// import SectionTitle from '../components/SectionTitle.vue';
 import PieChart from '../components/PieChart.vue';
+import TodaysMeals from '../components/TodaysMeals';
+
 
 export default {
     name: 'home',
     components: {
-        'meal': Meal,
-        'section-title': SectionTitle,
         'pie-chart': PieChart,
+        'todays-meals': TodaysMeals,
     },
 
     data: function() {
@@ -251,19 +240,6 @@ export default {
     height: 1.7em;
     justify-content: space-between;
     align-items: center;
-}
-
-.meals
-{
-    grid-area: meals;
-    width: 100%;
-    justify-self: center;
-}
-
-.meals p
-{
-    width: 100%;
-    /* text-align: center; */
 }
 
 .date
