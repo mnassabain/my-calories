@@ -1,5 +1,5 @@
 <template>
-    <div class="mealhistoryday-container">
+    <div>
 
         <section-title :message="formatDate(history.date)"/>
 

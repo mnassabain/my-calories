@@ -1,5 +1,6 @@
 <template>
     <div class="modifygoals-container">
+        
         <section-title message="Modify goals"/>
 
         <div class="fields">
@@ -23,6 +24,7 @@
             <button id="update-goals" @click="updateGoals">
                 Update
             </button>
+
         </div>
 
     </div>

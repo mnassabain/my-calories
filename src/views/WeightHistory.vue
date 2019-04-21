@@ -72,10 +72,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.weighthistory-container .history hr
-{
-    margin-bottom: 10px;
-}
-</style>

@@ -78,7 +78,6 @@ export default {
     border: none;
     margin-top: 30px;
 
-    /* background-image: linear-gradient(to top right, #134E5E, #71B280); */
     background-color: #0D687A;
     color: white;
 

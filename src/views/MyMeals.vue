@@ -37,16 +37,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.mymeals-container .meal h4
-{
-    margin: 0;
-    padding: 0;
-}
-
-.mymeals-container .meal #delete-button
-{
-    font-size: 1.2em;
-}
-</style>

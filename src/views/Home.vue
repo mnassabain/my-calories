@@ -2,18 +2,22 @@
 
     <div class="container">
 
+        <!-- date display -->
         <div class="date">
             <h3>{{getCurrentDate()}}</h3>
         </div>
 
+        <!-- calories overview -->
         <div class="overall-calories">
             <h2>{{current.calories}} kcal</h2>
             <hr>
             <h3>{{goals.calories}} kcal</h3>
         </div>
 
+        <!-- chart -->
         <pie-chart :series="series" class="pie-chart"/>
         
+        <!-- macros -->
         <div class="macros">
 
             <div class="macro">
@@ -47,6 +51,7 @@
 
         </div>
 
+        <!-- add meal button -->
         <router-link to="/addMeal" id="add-meal">
             <font-awesome-icon icon="plus"/>
         </router-link>
@@ -175,7 +180,6 @@ export default {
     z-index: 1;
 }
 
-
 .overall-calories
 {
     grid-area: overall-calories;
@@ -215,12 +219,6 @@ export default {
     padding: 0;
     margin-top: -30px;
     margin-left: -20px;
-}
-
-.chart
-{
-    margin: 0;
-    padding: 0;
 }
 
 .macros
@@ -269,28 +267,22 @@ export default {
 #add-meal
 {
     border: none;
-    background-color: #58ACFA;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     color: white;
     font-weight: bold;
-    font-size: 2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#add-meal
-{
+    
     position: fixed;
     bottom: 30px;
     right: 30px;
     font-size: 1.5em;
     background-color: #0D687A;
-    /* background-image: linear-gradient(to top right, #134E5E, #71B280); */
 }
 
 .container
