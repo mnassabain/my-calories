@@ -12,7 +12,7 @@
                 </strong>
             </span>
         </div>
-        <font-awesome-icon icon="trash-alt" id="delete-button" 
+        <font-awesome-icon v-if="removable" icon="trash-alt" id="delete-button" 
             @click="removeMeal(index)"/>
 
     </div>
@@ -24,10 +24,10 @@ export default {
     props: [
         'info',
         'index',
+        'removable',
     ],
     methods: {
         removeMeal(index) {
-            // this.$store.commit('removeTodaysMeal', index);
             this.$emit('removedMeal', index);
         }
     },

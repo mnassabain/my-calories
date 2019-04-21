@@ -41,7 +41,8 @@
                 Press the '+' button to add a meal.
             </p>
     
-            <todays-meals :mealList="todaysMeals" @removedMeal="removeMeal"/>
+            <todays-meals :mealList="todaysMeals" @removedMeal="removeMeal"
+                removable/>
 
         </div>
 

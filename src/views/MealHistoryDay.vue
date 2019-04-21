@@ -28,19 +28,24 @@
             
             <section-title message="Meals"/>
 
-            <div class="meal" v-for="meal in history.meals" :key="meal.id">
+            <meal-list :mealList="history.meals"/>
+
+            <!-- <div class="meal" v-for="meal in history.meals" :key="meal.id">
                 <div class="info">
                     <h4>{{meal.name}}</h4>
                     <span>
-                        {{meal.carbs * meal.portionSize}}g-
-                        {{meal.protein * meal.portionSize}}g-
+                        {{meal.carbs * meal.portionSize}}g
+                        {{meal.protein * meal.portionSize}}g
                         {{meal.fats * meal.portionSize}}g 
                         <strong>
                             {{meal.calories * meal.portionSize}}kcal
                         </strong>
                     </span>
                 </div>
-            </div>
+            </div> -->
+
+
+
         </div>
     </div>
 </template>
@@ -48,11 +53,13 @@
 <script>
 import moment from 'moment';
 import SectionTitle from '../components/SectionTitle';
+import MealList from '../components/MealList';
 
 export default {
     name: 'MealHistoryDay',
     components: {
         'section-title': SectionTitle,
+        'meal-list': MealList,
     },
     data: function() {
         return {

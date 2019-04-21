@@ -2,7 +2,8 @@
     <div class="meals">
 
         <meal v-for="(meal, mealIndex) in mealList" :key="meal.id"
-            :info="meal" :index="mealIndex" @removedMeal="removeMeal">
+            :info="meal" :index="mealIndex" @removedMeal="removeMeal"
+            :removable="removable">
         </meal>
 
     </div>
@@ -13,7 +14,10 @@ import Meal from './Meal';
 
 export default {
     name: 'MealList',
-    props: ['mealList'],
+    props: {
+        'mealList': Array,
+        'removable': Boolean,
+    },
     components: {
         'meal': Meal,
     },

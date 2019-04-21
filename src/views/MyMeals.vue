@@ -7,7 +7,7 @@
             You haven't created any meals yet!
         </p>
 
-        <my-meals :mealList="myMeals" @removedMeal="removeMeal"/>
+        <my-meals :mealList="myMeals" @removedMeal="removeMeal" removable/>
 
     </div>
 </template>
