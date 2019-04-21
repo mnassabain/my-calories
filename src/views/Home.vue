@@ -33,6 +33,7 @@
 
         </div>
 
+        <!-- meals -->
         <div class="meals">
 
             <section-title message="Todays meals"/>
@@ -315,6 +316,10 @@ export default {
 .slide-down-enter-active, .slide-down-leave-active 
 {
     transition: transform .45s ease;
+}
+
+.meals {
+    grid-area: meals;
 }
 
 </style>

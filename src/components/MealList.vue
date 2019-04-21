@@ -2,8 +2,10 @@
     <div class="meals">
 
         <meal v-for="(meal, mealIndex) in mealList" :key="meal.id"
-            :info="meal" :index="mealIndex" @removedMeal="removeMeal"
-            :removable="removable">
+            :info="meal" :index="mealIndex"
+            :removable="removable" :expandable="expandable" :clicked="clicked"
+            @addedMeal="addMeal" @expanded="expanded" @removedMeal="removeMeal"
+            >
         </meal>
 
     </div>
@@ -17,6 +19,8 @@ export default {
     props: {
         'mealList': Array,
         'removable': Boolean,
+        'expandable': Boolean,
+        'clicked': Number,
     },
     components: {
         'meal': Meal,
@@ -24,6 +28,12 @@ export default {
     methods: {
         removeMeal(index) {
             this.$emit('removedMeal', index);
+        },
+        addMeal(meal, portionSize) {
+            this.$emit('addedMeal', meal, portionSize);
+        },
+        expanded(index) {
+            this.$emit('expanded', index);
         }
     }
 }
@@ -32,14 +42,7 @@ export default {
 <style>
 .meals
 {
-    grid-area: meals;
     width: 100%;
     justify-self: center;
-}
-
-.meals p
-{
-    width: 100%;
-    /* text-align: center; */
 }
 </style>

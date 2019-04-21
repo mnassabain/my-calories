@@ -1,49 +1,27 @@
 <template>
     <div class="addmeal-container">
         
-        <!-- <h3>My meals</h3>
-        <hr> -->
-        
         <section-title message="My Meals"/>
 
         <p v-if="(myMeals.length == 0)">
             You haven't created any meals yet!
         </p>
 
-
-        <div class="meal" v-for="(meal, mealIndex) in myMeals" 
-            :key="meal.id" @click="togglePortionSize(mealIndex)">
-            
-            <div class="info">
-
-                <h4>{{meal.name}}</h4>
-
-                <span>{{meal.carbs}}g {{meal.protein}}g {{meal.fats}}g 
-                    <strong>{{meal.calories}}kcal</strong>
-                </span>
-            </div>
-
-            <transition name="expand">
-            <div v-if="clicked == mealIndex" class="portion-size" key="kurac">
-                <input type="number" v-model="portionSize" min="0" step="0.5" 
-                    @click.stop/>
-                <button id="add-button" @click="addMeal(meal)">Add</button>
-            </div>
-            </transition>
-
-
-        </div>
+        <meal-list :mealList="myMeals" expandable @addedMeal="addMeal"
+            @expanded="expanded" :clicked="clicked"/>
 
     </div>
 </template>
 
 <script>
 import SectionTitle from '../components/SectionTitle.vue';
+import MealList from '../components/MealList';
 
 export default {
     name: 'addmeal',
     components: {
         'section-title': SectionTitle,
+        'meal-list': MealList,
     },
     data: function() {
         return {
@@ -54,25 +32,20 @@ export default {
         }
     },
     methods: {
-        addMeal(meal) {
+        addMeal(meal, portionSize) {
             this.$store.commit('addMeal', {
                 "name": meal.name,
                 "carbs": meal.carbs,
                 "protein": meal.protein,
                 "fats": meal.fats,
                 "calories": meal.calories,
-                "portionSize" : this.portionSize,
+                "portionSize" : portionSize,
             });
 
             this.$router.go(-1);
         },
-        togglePortionSize(index) {
-            if (this.clicked != index) {
-                this.clicked = index;
-            }
-            else {
-                this.clicked = -1;
-            }
+        expanded(index) {
+            this.clicked = index;
         }
     },
     beforeMount() {
@@ -105,11 +78,6 @@ export default {
     padding: 0;
     background-color: inherit;
     z-index: 10;
-}
-
-.hidden
-{
-    display: none !important;
 }
 
 .portion-size
@@ -145,17 +113,6 @@ export default {
 }
 
 /* transitions */
-/* .slide-down-enter, .slide-down-leave-to 
-{
-    transform: translateY(-100%);
-}
-
-.slide-down-enter-active, .slide-down-leave-active 
-{
-    transition: transform .45s ease;
-} */
-
-
 .expand-enter-active, .expand-leave-active {
     transition: all 0.45s ease;
     max-height: 40px;
