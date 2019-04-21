@@ -3,10 +3,9 @@
 
         <section-title message="Weight history"/>
 
-        <!-- BUG: Page needs to be refreshed to display proper graph -->
-        <apexchart width="275" height="300" type="line" :options="options" 
-            :series="series" class="chart">
-        </apexchart>
+        <div class="chart-container">
+            <line-chart :datax="dates" :datay="measurements"/>
+        </div>
 
         <div class="history">
             
@@ -37,63 +36,43 @@
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts';
 import moment from 'moment';
 import SectionTitle from '@/components/SectionTitle';
+import LineChart from '@/components/LineChart';
 
 export default {
     name: 'weightHistory',
     components: {
-        'apexchart': VueApexCharts,
         'section-title': SectionTitle,
+        'line-chart': LineChart,
     },
     data: function() {
         return {
-            options: {
-                chart: {
-                    id: 'vuechart-example',
-                    toolbar: {
-                        show: false,
-                    },
-                },
-                xaxis: {
-                    type: "datetime",
-                    categories: []
-                },
-                yaxis: {
-                    forceNiceScale: true,
-                    tickAmount: 1,
-                },
-                grid:
-                {   
-                    padding: {top: 0, bottom: 0, right: 0, left: 0},
-                    margin: {top: 0, bottom: 0, right: 0, left: 0},
-                },
-                colors: ['#0D687A'],
-            },
-            series: [{
-                name: 'Weight',
-                data: []
-            }],
-
             weightHistory: [],
+            dates: [],
+            measurements: [],
         }
     },
     beforeMount() {
         this.weightHistory = this.$store.getters.weightHistory;
-    },
-    mounted() {
+
         this.weightHistory.forEach(element => {
-            this.series[0].data.push(element.weight);
-            this.options.xaxis.categories.push(element.date);
+            this.measurements.push(element.weight);
+            this.dates.push(element.date);
         });
     },
     methods: {
         removeEntry(entryIndex) {
             var index = this.weightHistory.length - entryIndex - 1;
+            /* remove from store */
             this.$store.commit('removeWeightEntry', index);
+
+            /* get new one */
             this.weightHistory = this.$store.getters.weightHistory;
-            this.series[0].data.splice(entryIndex, 1); 
+            
+            /* remove from data arrays */
+            this.measurements.splice(entryIndex, 1); 
+            this.dates.splice(entryIndex, 1); 
         },
         getDateString(date) {
             return moment(date).format('MMMM Do, YYYY');

@@ -41,7 +41,7 @@ export default {
         'clicked',
     ],
     data: function() {
-        return {
+        return {
             portionSize: 1,
         }
     },
@@ -123,8 +123,6 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-
 
 /* transitions */
 .expand-enter-active, .expand-leave-active {
