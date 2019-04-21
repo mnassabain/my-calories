@@ -15,22 +15,12 @@
                 Enter your weight to track results.
             </p>
 
-            <div class="weight-entry" 
-                v-for="(entry, entryIndex) in weightHistory" 
-                :key="entry.id">
-                
-                <div class="info">
-                    
-                    <h4>{{getDateString(entry.date)}}</h4>
-                    <span>{{entry.weight}}kg</span>
-                    
-                </div>
+            <weight-entry
+                v-for="(entry, entryIndex) in weightHistory" :key="entry.id"
+                :entry="entry" :index="entryIndex"
+                @removed="removeEntry">
+            </weight-entry>
 
-                <font-awesome-icon icon="trash-alt" 
-                    class="delete-button" 
-                    @click="removeEntry(entryIndex)"/>
-                
-            </div>
         </div>
     </div>
 </template>
@@ -39,12 +29,14 @@
 import moment from 'moment';
 import SectionTitle from '@/components/SectionTitle';
 import LineChart from '@/components/LineChart';
+import WeightEntry from '@/components/WeightEntry';
 
 export default {
     name: 'weightHistory',
     components: {
         'section-title': SectionTitle,
         'line-chart': LineChart,
+        'weight-entry': WeightEntry,
     },
     data: function() {
         return {
@@ -85,27 +77,5 @@ export default {
 .weighthistory-container .history hr
 {
     margin-bottom: 10px;
-}
-
-.weighthistory-container .weight-entry
-{
-    background-color: #E0FFF9;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.weighthistory-container .weight-entry h4
-{
-    margin: 0;
-    padding: 0;
-}
-
-.weighthistory-container .weight-entry .delete-button
-{
-    font-size: 1.2em;
 }
 </style>
