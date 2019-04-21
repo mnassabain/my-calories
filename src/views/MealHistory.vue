@@ -1,36 +1,29 @@
 <template>
     <div class="mealhistory-container">
+
         <section-title message="Meal history"/>
 
         <p v-if="(mealHistory.length == 0)">
             Every day at midnight we save your activity here.
         </p>
 
-        <div class="day" v-for="(entry, entryIndex) in mealHistory" 
-            :key="entry.id" @click="viewDay(entryIndex)">
-            
-            <h4>{{formatDate(entry.date)}}</h4>
-            <span>
-                {{entry.macros.carbs}}g
-                {{entry.macros.protein}}g
-                {{entry.macros.fats}}g 
-                
-                <strong>{{entry.macros.calories}}kcal</strong>
-            </span>
-
-        </div>
+        <day v-for="(entry, entryIndex) in mealHistory" :key="entry.id"
+            :entry="entry" :index="entryIndex"
+            @clicked="viewDay">
+        </day>
         
     </div>
 </template>
 
 <script>
-import moment from 'moment';
 import SectionTitle from '../components/SectionTitle';
+import MealHistoryEntry from '@/components/MealHistoryEntry';
 
 export default {
     name: 'mealHistory',
     components: {
         'section-title': SectionTitle,
+        'day': MealHistoryEntry,
     },
     data: function() {
         return {
@@ -41,10 +34,6 @@ export default {
         clearMealHistory() {
             this.$store.commit('clearMealHistory');
             this.mealHistory = this.$store.getters.mealHistory;
-        },
-        formatDate(date) {
-            var d = new moment(date);
-            return d.format('MMMM Do, YYYY');
         },
         viewDay(index) {
             this.$router.push('/mealHistory/' + index);
