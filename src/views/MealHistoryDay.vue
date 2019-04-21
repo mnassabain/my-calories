@@ -30,22 +30,6 @@
 
             <meal-list :mealList="history.meals"/>
 
-            <!-- <div class="meal" v-for="meal in history.meals" :key="meal.id">
-                <div class="info">
-                    <h4>{{meal.name}}</h4>
-                    <span>
-                        {{meal.carbs * meal.portionSize}}g
-                        {{meal.protein * meal.portionSize}}g
-                        {{meal.fats * meal.portionSize}}g 
-                        <strong>
-                            {{meal.calories * meal.portionSize}}kcal
-                        </strong>
-                    </span>
-                </div>
-            </div> -->
-
-
-
         </div>
     </div>
 </template>
@@ -96,28 +80,6 @@ export default {
 .macro-info .macro h4
 {
     margin-bottom: 0px;
-    padding: 0;
-}
-
-#meal-list
-{
-    margin-bottom: 15px;
-}
-
-.mealhistoryday-container .meals .meal
-{
-    background-color: #E0FFF9;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.meal-container .info h4
-{
-    margin: 0;
     padding: 0;
 }
 </style>
