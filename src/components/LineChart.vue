@@ -34,12 +34,14 @@ export default {
                     forceNiceScale: true,
                     tickAmount: 1,
                 },
-                grid:
-                {   
+                grid: {   
                     padding: {top: 0, bottom: 0, right: 0, left: 0},
                     margin: {top: 0, bottom: 0, right: 0, left: 0},
                 },
                 colors: ['#0D687A'],
+                markers: {
+                    size: 6,
+                },
             },
             series: [{
                 name: 'Weight',
